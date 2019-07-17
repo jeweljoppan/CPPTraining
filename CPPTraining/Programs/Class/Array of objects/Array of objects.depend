@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1563167552 source:d:\users\jewel\work\t0571\cpptraining\programs\class\array of objects\src\cempdetails.cpp
+	"CEmpDetails.h"
+
+1563166613 d:\users\jewel\work\t0571\cpptraining\programs\class\array of objects\include\cempdetails.h
+	<iostream>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<conio.h>
+
+1562917361 source:d:\users\jewel\work\t0571\cpptraining\programs\class\array of objects\main.cpp
+	"CManager.h"
+
+1563166107 d:\users\jewel\work\t0571\cpptraining\programs\class\array of objects\include\cmanager.h
+	"CEmpDetails.h"
+
+1563344847 source:d:\users\jewel\work\t0571\cpptraining\programs\class\array of objects\src\cmanager.cpp
+	"CManager.h"
+

@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1563340689 source:d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\main.cpp
+	"CManager.h"
+
+1563340528 source:d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\src\cishape.cpp
+	"CIShape.h"
+
+1563340521 d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\include\cishape.h
+	<iostream>
+	<conio.h>
+	<stdlib.h>
+
+1563340480 source:d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\src\ctriangle.cpp
+	"CTriangle.h"
+
+1563340639 d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\include\ctriangle.h
+	"CIShape.h"
+
+1563340493 source:d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\src\crectangle.cpp
+	"CRectangle.h"
+
+1563340448 d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\include\crectangle.h
+	"CIShape.h"
+
+1563340468 d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\include\cmanager.h
+	"CCircle.h"
+	"CRectangle.h"
+	"CTriangle.h"
+
+1563340456 d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\include\ccircle.h
+	"CIShape.h"
+
+1563340538 source:d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\src\ccircle.cpp
+	"CCircle.h"
+
+1563340391 source:d:\users\jewel\work\t0571\cpptraining\programs\class\runtime polymorphism\src\cmanager.cpp
+	"CManager.h"
+

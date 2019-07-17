@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1562312526 source:d:\users\jewel\work\t0571\cpptraining\programs\class\simple\class\cdate.cpp
+	"CDate.h"
+
+1562312251 d:\users\jewel\work\t0571\cpptraining\programs\class\simple\class\cdate.h
+	<iostream>
+	<ctime>
+
+1562312405 source:d:\users\jewel\work\t0571\cpptraining\programs\class\simple\class\main.cpp
+	"CDate.h"
+
+1562323219 source:d:\users\jewel\work\t0571\cpptraining\programs\class\constructors\class\main.cpp
+	"CDate.h"
+
+1562323220 d:\users\jewel\work\t0571\cpptraining\programs\class\constructors\class\cdate.h
+	<iostream>
+	<ctime>
+
