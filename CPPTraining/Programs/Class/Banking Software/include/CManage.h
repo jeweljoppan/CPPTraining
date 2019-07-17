@@ -26,10 +26,13 @@ class CManage
         int AdminAccess( void );
         void AddUser( void );
         void DeleteUser( void );
-        void HandleChoice( int );
+        void DisplayAll( void );
+        void HandleChoiceAdmin( void );
         int MainMenu( void );
         void MenuAdmin( void );
-        CAccount* GetUser( string );
+        vector<CAccount*>::iterator GetUser( void );
+        void PrintMenu( void );
+        void HandleChoiceUser( int,CAccount* );
         void MenuUser( void );
         void Manage( void );
 };

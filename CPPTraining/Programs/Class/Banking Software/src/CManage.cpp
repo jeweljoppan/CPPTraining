@@ -25,30 +25,27 @@ int CManage::AdminAccess( void )
 {
     string szPass ="\0";
 
-    while(1)
+    system( "cls" );
+    Intro();
+    cout<<"Password: ";
+    cin>>szPass;
+    if( szPass == m_szAdminPass )
     {
-        system( "cls" );
-        cout<<"Enter admin password: ";
-        cin>>szPass;
-        if( szPass == m_szAdminPass )
-        {
-            return 1;
-        }
-        else
-        {
-            cout<<"Wrong password. Press any key to continue. "<<endl;
-            getch();
-            return 0;
-        }
+        return 1;
     }
-
+    else
+    {
+        cout<<"Wrong password. Press any key to continue. "<<endl;
+        getch();
+        return 0;
+    }
 }
 
 int CManage::MainMenu( void )
 {
     int nChoice = 0;
 
-    cout<<"1. My Acoount"<<endl;
+    cout<<"1. My Account"<<endl;
     cout<<"2. Admin"<<endl;
     cout<<"0. Exit"<<endl;
     cout<<"Enter your choice (0,1,2): ";
@@ -64,18 +61,20 @@ void CManage::AddUser( void )
     CSaving *pSaving;
     CCurrent *pCurrent;
 
+    system( "cls" );
     Intro();
     cout<<"Current user: Admin"<<endl;
     cout<<string(19,'_');
     getchar();
-    cout<<"\n\nName of  customer: ";
+    cout<<"\n\nNew registration:";
+    cout<<"\n\nName: ";
     getline( cin,szName );
     cout<<"Balance: ";
     cin>>fBalance;
+    again:
     cout<<"1. Current"<<endl;
     cout<<"2. Saving"<<endl;
-    cout<<"3. Admin Menu"<<endl;
-    cout<<"Type of account( 1, 2 or 3 ): ";
+    cout<<"Type of account( 1 or 2 ): ";
     cin>>nType;
     switch( nType )
     {
@@ -89,56 +88,63 @@ void CManage::AddUser( void )
                 Accounts.push_back( pSaving );
                 break;
 
-        case 3: MenuAdmin();
-                break;
-
-        default:cout<<"Invalid option.Try again."<<endl;
-                MainMenu();
+        default:cout<<"Invalid option. Try again."<<endl;
+                goto again;
                 break;
     }
 }
 
 void CManage::DeleteUser( void )
 {
-    string szAccountNumber;
-    CAccount *ptr;
-    int nFlag = 0;
-
+    system( "cls" );
     Intro();
     cout<<"Current user: Admin"<<endl;
     cout<<string(19,'_');
-    cout<<"\n\nAccount Number: ";
-    cin>>szAccountNumber;
-    auto temp = Accounts.begin();
-	while( temp != Accounts.end() )
+    cout<<"\n\nDelete account";
+    auto temp = GetUser( );
+    if( temp == Accounts.end() )
     {
-        ptr=*temp;
-        if( ptr->GetAccountNo() == szAccountNumber)
-        {
-           Accounts.erase( temp );
-           nFlag = 1;
-           break;
-
-        }
-        else
-        {
-            temp++;
-        }
-    }
-    if( nFlag == 1 )
-    {
-        cout<<"\nDelete successful."<<endl;
+        cout<<"Invalid Account number. Try again"<<endl;
     }
     else
     {
-        cout<<"Invalid Account number."<<endl;
+        cout<<(*temp)->GetAccountNo()<<" deleted."<<endl;
+        Accounts.erase( temp );
+    }
+    sleep_for(seconds(2));
+}
+
+void CManage::DisplayAll( void )
+{
+    system( "cls" );
+    Intro();
+    int nCount = 1;
+
+    cout<<"\n\nAccount numbers: \n"<<endl;
+    for (auto iterate = Accounts.begin(); iterate < Accounts.end(); iterate++)
+    {
+        cout<<nCount<<". "<<(*iterate)->GetAccountNo()<<endl;
+        ++nCount;
+    }
+    if( nCount == 1 )
+    {
+        cout<<"\n\t\tNo item to display.\n"<<endl;
+        sleep_for(seconds(2));
+    }
+    else
+    {
+        cout<<"\n\nPress any key to continue. ";
+        getch();
     }
 }
 
-
-void CManage::HandleChoice( /*IN*/ int nChoice )
+void CManage::HandleChoiceAdmin( void )
 {
-    system( "cls" );
+    int nChoice;
+
+    again:
+    cout<<"\nEnter your choice (0-4): ";
+    cin>>nChoice;
     switch( nChoice )
     {
         case 0: cout<<"Program exiting. \n\n\n";
@@ -151,10 +157,14 @@ void CManage::HandleChoice( /*IN*/ int nChoice )
         case 2: DeleteUser();
                 break;
 
-        case 3: Manage();
+        case 3: DisplayAll();
+                break;
+
+        case 4: Manage();
                 break;
 
         default:cout<<"Invalid input.Try again"<<endl;
+                goto again;
                 break;
     }
 }
@@ -162,7 +172,6 @@ void CManage::HandleChoice( /*IN*/ int nChoice )
 void CManage::MenuAdmin( void )
 {
     int nFlag = 0;
-    int nChoice = 0;
 
     nFlag = AdminAccess();
     if( nFlag == 0)
@@ -174,72 +183,142 @@ void CManage::MenuAdmin( void )
         while(1)
         {
             system( "cls" );
+            Intro();
             cout<<"Current user: Admin"<<endl;
             cout<<string(19,'_');
             cout<<"\n\n1. Add new account"<<endl;
             cout<<"2. Delete an account"<<endl;
-            cout<<"3. Main Menu"<<endl;
+            cout<<"3. View all account"<<endl;
+            cout<<"4. Main Menu"<<endl;
             cout<<"0. Exit"<<endl;
-            cin>>nChoice;
-            HandleChoice( nChoice );
+            HandleChoiceAdmin();
         }
     }
 }
 
-CAccount* CManage::GetUser( string szAccountNumber )
+vector<CAccount*>::iterator CManage::GetUser( void )
 {
+    string szAccountNumber = "\0";
+
+    cout<<"\n\nAccount Number: ";
+    cin>>szAccountNumber;
     auto temp = Accounts.begin();
 	while( temp != Accounts.end() )
     {
-        if( *temp->GetAccountNo() == szAccountNumber)
+        if( ( *temp )->GetAccountNo() == szAccountNumber)
         {
-           erase( *temp );
-           nFlag = 1;
-           break;
-
+            return temp;
         }
         else
         {
             temp++;
         }
     }
-    if( nFlag == 1 )
-    {
-        cout<<"\nDelete successful."<<endl;
-    }
-    else
-    {
-        cout<<"Invalid Account number."<<endl;
+    return temp;
 
+}
+
+void CManage::PrintMenu( void )
+{
+    cout<<"\n1. Deposit"<<endl;
+    cout<<"2. Balance"<<endl;
+    cout<<"3. My Details"<<endl;
+    cout<<"4. Withdraw"<<endl;
+    cout<<"5. Calculate interest"<<endl;
+    cout<<"6. Main Menu"<<endl;
+    cout<<"0. Exit"<<endl;
+    cout<<"\nEnter your choice (0-6): ";
+}
+
+void  CManage::HandleChoiceUser( int nChoice,CAccount *User )
+{
+    float fAmount = 0;
+    system( "cls" );
+    Intro();
+    switch( nChoice )
+    {
+        case 1: cout<<"Credit amount: ";
+                cin>>fAmount;
+                User->AddBalance( fAmount );
+                break;
+
+        case 2: User->ViewBalance();
+                break;
+
+        case 3: User->DisplayDetails();
+                break;
+
+        case 4: cout<<"Withdraw amount: ";
+                cin>>fAmount;
+                User->WithDraw( fAmount );
+                break;
+
+        case 5: User->CalculateInterest();
+                break;
+
+        case 6: Manage();
+                break;
+
+        case 0: cout<<"Program Exiting"<<endl;
+                exit( 0 );
+                break;
+
+        default:cout<<"Invalid option. Try again."<<endl;
+                break;
+
+    }
+    sleep_for( seconds( 2 ) );
 }
 
 void CManage::MenuUser()
 {
+    int nChoice;
 
-
-
+    system( "cls" );
+    Intro();
+    auto User = GetUser();
+    if( User == Accounts.end() )
+    {
+        cout<<"No Match found. Try again."<<endl;
+        sleep_for( seconds( 2 ) );
+    }
+    else
+    {
+        while( 1 )
+        {
+            system( "cls ");
+            Intro();
+            cout<<"Current user: "<<( *User )->GetAccountNo()<<endl;
+            cout<<string(19,'_')<<endl;
+            PrintMenu();
+            cin>>nChoice;
+            HandleChoiceUser( nChoice,( *User ) );
+        }
+    }
 }
+
 void CManage::Manage( void )
 {
     int nChoice;
 
-    while(1)
+    while( 1 )
     {
         system( "cls" );
         Intro();
         nChoice = MainMenu();
         switch( nChoice )
         {
+            case 0: cout<<"Thank you for using Banking Software"<<endl;
+                    cout<<"Program Exiting.\n\n\n";
+                    exit( 0 );
+                    break;
+
             case 1: MenuUser();
                     break;
 
             case 2: MenuAdmin();
                     break;
 
-            case 3: cout<<"Thank you for using Banking Software"<<endl;
-                    cout<<"Program Exiting.\n\n\n";
-                    exit( 0 );
-                    break;
 
             default:cout<<"Invalid Choice. Try again."<<endl;
                     cout<<"Press any button to continue";

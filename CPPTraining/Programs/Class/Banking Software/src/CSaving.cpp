@@ -12,9 +12,10 @@
 
 #include "CSaving.h"
 
-int CSaving::m_nAccountCount = 0;
+int CSaving::m_nAccountCount = 1000;
 
-void CSaving::AddUser( string szName, float fBalance )
+void CSaving::AddUser( /*IN*/ string szName,
+                       /*IN*/ float fBalance )
 {
     m_szName = szName;
     m_fBalance = fBalance;
@@ -22,16 +23,24 @@ void CSaving::AddUser( string szName, float fBalance )
     m_nAccountCount++;
 }
 
-void CSaving::WithDraw( float fAmount )
+void CSaving::WithDraw( /*IN*/ float fAmount )
 {
-    m_fBalance = m_fBalance - fAmount;
-    ViewBalance();
+        if( m_fBalance < fAmount )
+        {
+            cout<<"No sufficient balance."<<endl;
+        }
+        else
+        {
+            m_fBalance = m_fBalance - fAmount;
+        }
+        ViewBalance();
 }
 
 void CSaving::CalculateInterest( void )
 {
-
+    cout<<"Interest: "<<m_fBalance * CIRATE;
 }
+
 CSaving::CSaving( void )
 {
     m_szAccountno = "\0";

@@ -13,7 +13,7 @@
 #ifndef CSAVING_H
 #define CSAVING_H
 
-#define CIRATE 6
+#define CIRATE .06
 
 #include <CAccount.h>
 

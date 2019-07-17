@@ -13,17 +13,16 @@
  #include "CAccount.h"
 
 
-void CAccount::AddBalance( float fAmount )
+void CAccount::AddBalance( /*IN*/ float fAmount )
 {
     m_fBalance = m_fBalance + fAmount;
+    cout<<endl;
     ViewBalance();
 }
 
 void CAccount::ViewBalance( void )
 {
-    cout<<"Balance of your ";
-    DisplayType();
-    cout<<" is Rs "<<this->m_fBalance;
+    cout<<"Balance: "<<this->m_fBalance;
 }
 
 void CAccount::DisplayType( void )
@@ -45,6 +44,7 @@ void CAccount::DisplayDetails( void )
     cout<<"ACCOUNT TYPE: ";
     DisplayType();
     cout<<"\nBALANCE: "<<m_fBalance;
+    sleep_for( seconds( 2 ) );
 }
 
 string CAccount::GetAccountNo( void )

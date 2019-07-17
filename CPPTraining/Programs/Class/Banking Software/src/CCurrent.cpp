@@ -13,26 +13,36 @@
 
 #include "CCurrent.h"
 
-int CCurrent::m_nAccountCount = 0;
+int CCurrent::m_nAccountCount = 1000;
 
 void CCurrent::AddUser( /*IN*/ string szName,
                         /*IN*/ float fBalance )
 {
     m_szName = szName;
     m_fBalance = fBalance;
-    m_szAccountno = "C" + to_string(m_nAccountCount);
+    m_szAccountno = "C" + to_string( m_nAccountCount );
     m_nAccountCount++;
+    CheckMin();
+    sleep_for( seconds( 2 ) );
 }
 
 void CCurrent::WithDraw( /*IN*/ float fAmount )
 {
-        m_fBalance = m_fBalance - fAmount;
-        CheckMin();
+        if( m_fBalance < fAmount )
+        {
+            cout<<"No sufficient balance."<<endl;
+        }
+        else
+        {
+            m_fBalance = m_fBalance - fAmount;
+            CheckMin();
+            ViewBalance();
+        }
 }
 
 void CCurrent::CalculateInterest( void )
 {
-    cout<<"\nThis feature is not available for Current accounttype."<<endl;
+    cout<<"\nThis feature is not available for Current account type."<<endl;
 }
 
 void CCurrent::CheckMin()
@@ -42,12 +52,12 @@ void CCurrent::CheckMin()
         cout<<"BALANCE BELOW LIMIT!!"<<endl;
         cout<<"Rs 20 will be deducted from account."<<endl;
         m_fBalance = m_fBalance - PENALITY;
-        ViewBalance();
     }
     else
     {
-        ViewBalance();
+        cout<<"Balance Above Limit"<<endl;
     }
+
 }
 
 CCurrent::CCurrent( void )
