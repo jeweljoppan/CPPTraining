@@ -16,6 +16,15 @@
 #include "CSaving.h"
 #include "CCurrent.h"
 
+/*
+ * Class <CManage>
+ * <A class which handles all control flow.>
+ * Author : Jewel Jo Prince
+ * Version : 1.0.0
+ * Date : 17-07-2019
+ *
+ */
+
 class CManage
 {
     private:

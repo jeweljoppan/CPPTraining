@@ -13,8 +13,17 @@
 
 #include "CCurrent.h"
 
+//Static variable that keep tracks of the Current account number.
 int CCurrent::m_nAccountCount = 1000;
 
+// ------------------------------------------------------------------
+// Method      : AddUser
+// Parameters  :
+//    <param1> - <string szName> - Name of the customer.
+//    <param2> - <float fBalance> - Inital balance of the account.
+// Returns     : Nil
+// Description : Initializes the basic details by user input.
+// ------------------------------------------------------------------
 void CCurrent::AddUser( /*IN*/ string szName,
                         /*IN*/ float fBalance )
 {
@@ -23,9 +32,17 @@ void CCurrent::AddUser( /*IN*/ string szName,
     m_szAccountno = "C" + to_string( m_nAccountCount );
     m_nAccountCount++;
     CheckMin();
+    cout<<"Account created."<<endl;
     sleep_for( seconds( 2 ) );
 }
 
+// ------------------------------------------------------------------
+// Method      : WithDraw
+// Parameters  :
+//   <param 1> - <float fAmount> - Amount to be withdrawn.
+// Returns     : Nil
+// Description : Deducts amount from account.
+// ------------------------------------------------------------------
 void CCurrent::WithDraw( /*IN*/ float fAmount )
 {
         if( m_fBalance < fAmount )
@@ -40,11 +57,23 @@ void CCurrent::WithDraw( /*IN*/ float fAmount )
         }
 }
 
+// ------------------------------------------------------------------
+// Method      : CalculateInterest
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Display the nonavailability of the feature.
+// ------------------------------------------------------------------
 void CCurrent::CalculateInterest( void )
 {
     cout<<"\nThis feature is not available for Current account type."<<endl;
 }
 
+// ------------------------------------------------------------------
+// Method      : CheckMin
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Ensures minimum balance, if not penalty taken.
+// ------------------------------------------------------------------
 void CCurrent::CheckMin()
 {
     if( m_fBalance < ACCOUNT_MINIMUM )
@@ -60,6 +89,12 @@ void CCurrent::CheckMin()
 
 }
 
+// ------------------------------------------------------------------
+// Method      : Constructor
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Initializes the data members with default value.
+// ------------------------------------------------------------------
 CCurrent::CCurrent( void )
 {
     m_szAccountno = "\0";
@@ -68,6 +103,12 @@ CCurrent::CCurrent( void )
     m_fBalance = 0;
 }
 
+// ------------------------------------------------------------------
+// Method      : Destructor
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Deallocates memory.
+// ------------------------------------------------------------------
 CCurrent::~CCurrent( void )
 {
     //dtor

@@ -17,6 +17,14 @@
 
 #include <CAccount.h>
 
+/*
+ * Class <CSaving>
+ * <A class which stores Savings type of accounts.>
+ * Author : Jewel Jo Prince
+ * Version : 1.0.0
+ * Date : 17-07-2019
+ *
+ */
 
 class CSaving : public CAccount
 {

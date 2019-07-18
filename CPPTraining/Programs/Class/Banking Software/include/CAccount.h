@@ -26,6 +26,15 @@ using namespace std::chrono;
 
 using namespace std;
 
+/*
+ * Class <CEmpDetails>
+ * <A class which is the parent class of the Savings and Current classes.>
+ * Author : Jewel Jo Prince
+ * Version : 1.0.0
+ * Date : 17-07-2019
+ *
+ */
+
 class CAccount
 {
     protected:

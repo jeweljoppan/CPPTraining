@@ -1,0 +1,33 @@
+/**
+ * File CAdmin.h - Copyright (C) <2019>
+ * <Triassic Solutions Private Limited>. All rights reserved.
+ * This file contains the declaration of a Class "CAdmin"
+ *
+ * Author   : Jewel Jo Prince
+ * Version  : 1.0.0
+ * Date     : 18-07-2019
+ *
+ */
+
+#ifndef CADMIN_H
+#define CADMIN_H
+
+#include "CStudent.h"
+
+class CAdmin
+{
+    private:
+        CStudent m_student;
+        static int m_nAdmCount;
+        void Menu( void );
+        void HandleChoice( void );
+        void AddNew( void );
+        void ViewSpec( void );
+        void ViewAll( void );
+        void DeleteSpec( void );
+        void DeleteAll( void );
+    public:
+        void Manage( void );
+};
+
+#endif // CADMIN_H

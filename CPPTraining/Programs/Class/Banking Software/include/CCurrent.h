@@ -18,6 +18,14 @@
 
 #include <CAccount.h>
 
+/*
+ * Class <CCurrent>
+ * <A class which handle Current type of accounts.>
+ * Author : Jewel Jo Prince
+ * Version : 1.0.0
+ * Date : 17-07-2019
+ *
+ */
 
 class CCurrent : public CAccount
 {
