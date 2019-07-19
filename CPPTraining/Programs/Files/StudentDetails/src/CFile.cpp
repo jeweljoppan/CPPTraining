@@ -2,7 +2,7 @@
 
 CFile::CFile( void )
 {
-    storage.open( "STUDENT.DAT", ios::in | ios::out | ios::binary );
+    storage.open( "STUDENT.dat", ios::in | ios::out | ios::binary );
     if( !storage )
     {
         cout<<"File access failed."<<endl;
@@ -40,10 +40,44 @@ void CFile::ViewAll( void )
     while( !storage.eof() )
     {
         storage.read((CStudent*)&temp,sizeof(temp));
-
-
+        temp->ViewTab();
     }
 }
+
+void CFile::ClearSpec( int nAdmNo )
+{
+    CStudent temp;
+    ofstream fout("temp.dat", ios::out | ios::binary | ios::trunc );
+    while( storage.read( ( CStudent* )&temp, sizeof( temp ) )
+    {
+        if( temp->GetAdmNo() != nAdmNo )
+        {
+            fout.write( ( char* )&temp,sizeof( temp ))
+        }
+        else
+        {
+            //else unimplemented
+        }
+    }
+}
+
+void CFile::ClearFile( void )
+{
+    remove( "STUDENT.dat" );
+    storage.close();
+    storage.open( "STUDENT.dat", ios::in | ios::out | ios::binary | ios::trunc );
+    if( !storage )
+    {
+        cout<<"File clearing failed."<<endl;
+        exit( 0 );
+    }
+    else
+    {
+        //unimplemented
+    }
+
+}
+
 CFile::~CFile( void )
 {
     storage.close();

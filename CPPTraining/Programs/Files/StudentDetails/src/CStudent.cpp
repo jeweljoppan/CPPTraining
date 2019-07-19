@@ -35,7 +35,7 @@ void CStudent::AddData( /*IN*/ int nAdmno,
     cout<<"Saving details to file."<<endl;
 }
 
-int CStudent::GetAdmn( void )
+int CStudent::GetAdmNo( void )
 {
     return m_nAdmNo;
 }
@@ -49,4 +49,7 @@ void CStudent::View( void )
     cout<<"Date of Join\t:"<<m_szDateOfJoin<<end;
 }
 
-void
+void CStudent::ViewTab( void )
+{
+
+}
