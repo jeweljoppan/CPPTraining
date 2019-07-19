@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1563521180 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\main.cpp
+	"CAdmin.h"
+
+1563537730 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\src\cstudent.cpp
+	"CStudent.h"
+
+1563535954 d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\include\cstudent.h
+	<iostream>
+	<ctime>
+	<string>
+	<conio.h>
+	<iomanip>
+
+1563537896 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\src\cadmin.cpp
+	"CAdmin.h"
+
+1563520615 d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\include\cadmin.h
+	"CStudent.h"
+	"CFile.h"
+
+1563535655 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\src\cfile.cpp
+	"CFile.h"
+
+1563533877 d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\files\studentdetails\include\cfile.h
+	<fstream>
+	<CStudent.h>
+

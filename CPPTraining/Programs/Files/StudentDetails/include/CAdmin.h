@@ -13,11 +13,17 @@
 #define CADMIN_H
 
 #include "CStudent.h"
+#include "CFile.h"
+//#include <chrono>
+//#include <thread>
 
+//using namespace std::this_thread;
+//using namespace std::chrono;
 class CAdmin
 {
     private:
         CStudent m_student;
+        CFile m_file;
         static int m_nAdmCount;
         void Menu( void );
         void HandleChoice( void );
@@ -26,6 +32,7 @@ class CAdmin
         void ViewAll( void );
         void DeleteSpec( void );
         void DeleteAll( void );
+        void Hold( void );
     public:
         void Manage( void );
 };

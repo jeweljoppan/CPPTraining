@@ -1,9 +1,10 @@
-#include <iostream>
+#include "CAdmin.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    CAdmin admin;
+    admin.Manage();
     return 0;
 }

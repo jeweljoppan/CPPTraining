@@ -12,7 +12,7 @@
 
 #include "CAdmin.h"
 
-int CAdmin::m_nAdmCount = 0;
+int CAdmin::m_nAdmCount = 1;
 
 void Intro( void )
 {
@@ -37,6 +37,7 @@ void CAdmin::HandleChoice( void )
     re:
     cout<<"\nEnter your choice (1-5 or 9): ";
     cin>>nChoice;
+    getchar();
     switch( nChoice )
     {
         case 1: AddNew();
@@ -55,7 +56,8 @@ void CAdmin::HandleChoice( void )
                 break;
 
         case 9: system( "cls" );
-                cout<<"Program Exiting\n\n";
+                cout<<"Program exiting\n\n";
+                exit( 0 );
                 break;
 
         default:cout<<"Invalid option.Try again.\n";
@@ -72,17 +74,17 @@ void CAdmin::AddNew( void )
     string szDateOfJoin;
 
     Intro();
-    cout<<"Registration";
+    cout<<"Registration"<<endl;
     cout<<string( 12,'_' );
     cout<<"\nName\t\t: ";
-    geline( cin,szName );
+    getline( cin,szName );
     Gre:
     cout<<"Gender( M/F/O )\t\t: ";
     cin>>cGender;
     if( cGender == 'M' || cGender == 'F' || cGender == 'O' )
     {
         cout<<"Courses\t\t:\n";
-        cout<<"\t1. Computer Science"<endl;
+        cout<<"\t1. Computer Science"<<endl;
         cout<<"\t2. Biology"<<endl;
         cout<<"\t3. Commerce"<<endl;
         DOJre:
@@ -105,16 +107,61 @@ void CAdmin::AddNew( void )
         goto Gre;
     }
     m_student.AddData( m_nAdmCount++, szName, cGender, nCourse, szDateOfJoin);
+    m_file.Write( m_student );
 }
 
 void CAdmin::ViewSpec( void )
 {
+    int nAdmNo = 0;
 
+    Intro();
+    cout<<"Admno: ";
+    cin>>nAdmNo;
+    m_student = m_file.GetData( nAdmNo );
+    cout<<" Student Details: "<<endl;
+    if( m_student.GetAdmNo() == 0 )
+    {
+        cout<<"No Record found.";
+    }
+    else
+    {
+        m_student.View();
+    }
+    cout<<endl;
+    Hold();
 }
+ void CAdmin::DeleteSpec( void )
+ {
+
+ }
+
+ void CAdmin::DeleteAll( void )
+ {
+
+ }
+
+ void CAdmin::Hold( void )
+ {
+    cout<<"Press any key to continue.";
+    getch();
+ }
+
+void CAdmin::ViewAll( void )
+{
+    Intro();
+    cout<<setw( 10 )<<"Name";
+    cout<<setw( 10 )<<"Admission";
+    cout<<setw( 10 )<<"Gender";
+    cout<<setw( 10 )<<"Course";
+    cout<<setw( 10 )<<"Date of Join"<<endl;
+    m_file.ViewAll();
+    getch();
+}
+
 void CAdmin::Manage( void )
 {
     while( 1 )
-    {
+    {   Intro();
         Menu();
         HandleChoice();
     }

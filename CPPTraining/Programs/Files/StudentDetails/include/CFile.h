@@ -13,14 +13,16 @@
 #define CFILE_H
 
 #include <fstream>
-#include <CStudent.h>-
+#include <CStudent.h>
 
 class CFile
 {
     private:
-        fstream storage;
+        fstream istorage;
+        fstream ostorage;
     public:
         CFile( void );
+        void Write( CStudent );
         CStudent GetData( int );
         void ViewAll( void );
         void ClearSpec( int nAdmNo );

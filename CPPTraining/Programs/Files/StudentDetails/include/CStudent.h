@@ -16,9 +16,11 @@
 
 #include <iostream>
 #include <ctime>
+#include <string>
+#include <conio.h>
+#include <iomanip>
 
 using namespace std;
-
 
 /*
  * Class <CStudent>
@@ -28,14 +30,20 @@ using namespace std;
  * Date : 12-07-2019
  *
  */
+
+struct stStudent
+{
+    int nAdmNo;
+    string szName;
+    char cGender;
+    string szCourse;
+    string szDateOfJoin;
+};
+
 class CStudent
 {
     private:
-        int m_nAdmNo;
-        string m_szName;
-        char m_cGender;
-        string m_szCourse;
-        string m_szDateOfJoin;
+        struct stStudent m_data;
     public:
         CStudent( void );
         void AddData( int, string, char, int, string );
