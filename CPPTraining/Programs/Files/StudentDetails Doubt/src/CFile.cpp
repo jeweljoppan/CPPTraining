@@ -2,10 +2,6 @@
 
 CFile::CFile( void )
 {
-
-}
-void CFile::Write( CStudent data )
-{
     ostorage.open("STUDENT.dat", ios::out | ios::binary | ios::ate );
     if( !ostorage )
     {
@@ -16,15 +12,6 @@ void CFile::Write( CStudent data )
     {
         //unimplemented
     }
-    ostorage.write( reinterpret_cast<const char*>( &data ),sizeof( data ) );
-    ostorage.flush();
-    ostorage.close();
-}
-
-CStudent CFile::GetData( int nAdmNo )
-{
-    CStudent temp;
-
     istorage.open( "STUDENT.dat", ios::in | ios::binary );
     if( !istorage )
     {
@@ -35,6 +22,17 @@ CStudent CFile::GetData( int nAdmNo )
     {
         //unimplemented
     }
+}
+void CFile::Write( CStudent data )
+{
+    ostorage.seekp( 0, ios::end );
+    ostorage.write( reinterpret_cast<const char*>( &data ),sizeof( data ) );
+    ostorage.flush();
+}
+
+CStudent CFile::GetData( int nAdmNo )
+{
+    CStudent temp;
     istorage.seekg( 0, ios::beg );
     while( !istorage.eof() )
     {
@@ -48,25 +46,13 @@ CStudent CFile::GetData( int nAdmNo )
             //unimplemented
         }
     }
-    istorage.close();
     return temp;
 }
 
 void CFile::ViewAll( void )
 {
     CStudent temp;
-
-    istorage.open( "STUDENT.dat", ios::in | ios::binary );
-    if( !istorage )
-    {
-        cout<<"File access failed or file does not exist."<<endl;
-        exit( 0 );
-    }
-    else
-    {
-        //unimplemented
-    }
-    cout<<istorage.tellp()<<"\n";
+    cout<<istorage.tellg()<<"\n";
     istorage.clear();
     istorage.seekg( 0, ios::beg );
     while( istorage.read( ( char* )&temp, sizeof( CStudent ) ) )
@@ -76,7 +62,6 @@ void CFile::ViewAll( void )
         cout<<"after\n";
     }
     cout<<istorage.tellg();
-    istorage.close();
 }
 
 void CFile::ClearSpec( int nAdmNo )
@@ -111,7 +96,17 @@ void CFile::ClearFile( void )
     {
         //unimplemented
     }
-    ostorage.close();
+
+    istorage.open( "STUDENT.dat", ios::in | ios::binary  );
+    if( !istorage )
+    {
+        cout<<"File access failed or file does not exist."<<endl;
+        exit( 0 );
+    }
+    else
+    {
+        //unimplemented
+    }
 }
 
 CFile::~CFile( void )

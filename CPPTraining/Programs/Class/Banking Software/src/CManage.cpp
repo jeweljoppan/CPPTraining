@@ -12,15 +12,28 @@
 
 #include "CManage.h"
 
+//constant string that stores the admin password.
 const string CManage::m_szAdminPass = "admin123";
 
+// ------------------------------------------------------------------
+// Method      : Intro
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Introduction message.
+// ------------------------------------------------------------------
 void CManage::Intro( void )
 {
     cout<<"\t\t\tBANKING SOFTWARE"<<endl;
     cout<<"\t\t\t"<<string(16,'_')<<endl;
-    cout<<"\n\n\n";
+    cout<<"\n";
 }
 
+// ------------------------------------------------------------------
+// Method      : AdminAccess
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Checks the input password of the admin
+// ------------------------------------------------------------------
 int CManage::AdminAccess( void )
 {
     string szPass ="\0";
@@ -41,18 +54,30 @@ int CManage::AdminAccess( void )
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : MainMenu
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Display the user access menu
+// ------------------------------------------------------------------
 int CManage::MainMenu( void )
 {
     int nChoice = 0;
 
     cout<<"1. My Account"<<endl;
     cout<<"2. Admin"<<endl;
-    cout<<"0. Exit"<<endl;
-    cout<<"Enter your choice (0,1,2): ";
+    cout<<"9. Exit"<<endl;
+    cout<<"Enter your choice (1,2 or 9): ";
     cin>>nChoice;
     return nChoice;
 }
 
+// ------------------------------------------------------------------
+// Method      : Adduser
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Function for admin to add new customer
+// ------------------------------------------------------------------
 void CManage::AddUser( void )
 {
     string szName;
@@ -63,28 +88,34 @@ void CManage::AddUser( void )
 
     system( "cls" );
     Intro();
-    cout<<"Current user: Admin"<<endl;
-    cout<<string(19,'_');
+    cout<<setw(240)<<setiosflags( ios::right)<<"Current user: Admin"<<endl;
     getchar();
-    cout<<"\n\nNew registration:";
-    cout<<"\n\nName: ";
+    cout<<"New registration";
+    cout<<"\n\nName\t\t\t: ";
     getline( cin,szName );
-    cout<<"Balance: ";
+    cout<<"Balance\t\t\t: ";
     cin>>fBalance;
+    cout<<"Type of account" <<endl;
+    cout<<"\t1. Current"<<endl;
+    cout<<"\t2. Saving"<<endl;
     again:
-    cout<<"1. Current"<<endl;
-    cout<<"2. Saving"<<endl;
-    cout<<"Type of account( 1 or 2 ): ";
+    cout<<"Choose ( 1 or 2 )\t: ";
     cin>>nType;
     switch( nType )
     {
         case 1: pCurrent = new CCurrent;
                 pCurrent->AddUser( szName,fBalance );
+                system( "cls" );
+                Intro();
+                pCurrent->DisplayDetails();
                 Accounts.push_back( pCurrent );
                 break;
 
         case 2: pSaving = new CSaving;
                 pSaving->AddUser( szName,fBalance );
+                system( "cls" );
+                Intro();
+                pSaving->DisplayDetails();
                 Accounts.push_back( pSaving );
                 break;
 
@@ -94,13 +125,21 @@ void CManage::AddUser( void )
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : DeleteUser
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Function for admin to delete a user
+// ------------------------------------------------------------------
 void CManage::DeleteUser( void )
 {
+    char cCheck;
+
     system( "cls" );
     Intro();
-    cout<<"Current user: Admin"<<endl;
-    cout<<string(19,'_');
-    cout<<"\n\nDelete account";
+    cout<<setw(240)<<setiosflags( ios::right)<<"Current user: Admin"<<endl;
+    cout<<"\n\nDelete account\n";
+    DisplayAll();
     auto temp = GetUser( );
     if( temp == Accounts.end() )
     {
@@ -108,22 +147,50 @@ void CManage::DeleteUser( void )
     }
     else
     {
-        cout<<(*temp)->GetAccountNo()<<" deleted."<<endl;
-        Accounts.erase( temp );
+        again:
+        cout<<"\nDo you want to delete "<<(*temp)->GetAccountNo()<<"? (Y/N)\n";
+        cin>>cCheck;
+        cCheck = toupper( cCheck );
+        if( cCheck == 'Y' )
+        {
+            cout<<(*temp)->GetAccountNo()<<" deleted."<<endl;
+            Accounts.erase( temp );
+        }
+        else if( cCheck == 'N' )
+        {
+            cout<<"Delete operation canceled.\n";
+        }
+        else
+        {
+            cout<<"Invalid input.\n";
+            goto again;
+        }
     }
     sleep_for(seconds(2));
 }
 
+// ------------------------------------------------------------------
+// Method      : DisplayAll
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Function to display all customers
+// ------------------------------------------------------------------
 void CManage::DisplayAll( void )
 {
     system( "cls" );
     Intro();
     int nCount = 1;
 
-    cout<<"\n\nAccount numbers: \n"<<endl;
+    cout<<"SI";
+    cout<<"\tNAME";
+    cout<<"\t\tACCOUNT NUMBER";
+    cout<<"\tACCOUNT TYPE";
+    cout<<"\tBALANCE"<<endl;
+    cout<<"\n";
     for (auto iterate = Accounts.begin(); iterate < Accounts.end(); iterate++)
     {
-        cout<<nCount<<". "<<(*iterate)->GetAccountNo()<<endl;
+        cout<<nCount<<". ";
+        (*iterate)->DisplayTab();
         ++nCount;
     }
     if( nCount == 1 )
@@ -138,18 +205,21 @@ void CManage::DisplayAll( void )
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : HandleChoiceAmin
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Function to handle the choice inputed my the admin
+// ------------------------------------------------------------------
 void CManage::HandleChoiceAdmin( void )
 {
     int nChoice;
 
     again:
-    cout<<"\nEnter your choice (0-4): ";
+    cout<<"\nEnter your choice (1-4 or 0): ";
     cin>>nChoice;
     switch( nChoice )
     {
-        case 0: cout<<"Program exiting. \n\n\n";
-                exit( 0 );
-                break;
 
         case 1: AddUser();
                 break;
@@ -163,12 +233,22 @@ void CManage::HandleChoiceAdmin( void )
         case 4: Manage();
                 break;
 
+        case 9: cout<<"Program exiting. \n\n\n";
+                exit( 0 );
+                break;
+
         default:cout<<"Invalid input.Try again"<<endl;
                 goto again;
                 break;
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : MenuAdmin
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Function that displays the menu for admin
+// ------------------------------------------------------------------
 void CManage::MenuAdmin( void )
 {
     int nFlag = 0;
@@ -184,18 +264,24 @@ void CManage::MenuAdmin( void )
         {
             system( "cls" );
             Intro();
-            cout<<"Current user: Admin"<<endl;
-            cout<<string(19,'_');
+            cout<<setw(240)<<setiosflags( ios::right)<<"Current user: Admin"<<endl;
             cout<<"\n\n1. Add new account"<<endl;
             cout<<"2. Delete an account"<<endl;
             cout<<"3. View all account"<<endl;
             cout<<"4. Main Menu"<<endl;
-            cout<<"0. Exit"<<endl;
+            cout<<"9. Exit"<<endl;
             HandleChoiceAdmin();
         }
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : GetUser
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Fucntion that finds a specific opbject from array
+//               using account number.
+// ------------------------------------------------------------------
 vector<CAccount*>::iterator CManage::GetUser( void )
 {
     string szAccountNumber = "\0";
@@ -218,6 +304,12 @@ vector<CAccount*>::iterator CManage::GetUser( void )
 
 }
 
+// ------------------------------------------------------------------
+// Method      : PrintMenu
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Displays the menu for th customer
+// ------------------------------------------------------------------
 void CManage::PrintMenu( void )
 {
     cout<<"\n1. Deposit"<<endl;
@@ -226,10 +318,16 @@ void CManage::PrintMenu( void )
     cout<<"4. Withdraw"<<endl;
     cout<<"5. Calculate interest"<<endl;
     cout<<"6. Main Menu"<<endl;
-    cout<<"0. Exit"<<endl;
+    cout<<"9. Exit"<<endl;
     cout<<"\nEnter your choice (0-6): ";
 }
 
+// ------------------------------------------------------------------
+// Method      : HandleUser
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Handles the input of the user
+// ------------------------------------------------------------------
 void  CManage::HandleChoiceUser( int nChoice,CAccount *User )
 {
     float fAmount = 0;
@@ -259,7 +357,7 @@ void  CManage::HandleChoiceUser( int nChoice,CAccount *User )
         case 6: Manage();
                 break;
 
-        case 0: cout<<"Program Exiting"<<endl;
+        case 9: cout<<"Program Exiting"<<endl;
                 exit( 0 );
                 break;
 
@@ -270,6 +368,12 @@ void  CManage::HandleChoiceUser( int nChoice,CAccount *User )
     sleep_for( seconds( 2 ) );
 }
 
+// ------------------------------------------------------------------
+// Method      : MenuUser
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Handles the control flow of customer.
+// ------------------------------------------------------------------
 void CManage::MenuUser()
 {
     int nChoice;
@@ -288,8 +392,7 @@ void CManage::MenuUser()
         {
             system( "cls ");
             Intro();
-            cout<<"Current user: "<<( *User )->GetAccountNo()<<endl;
-            cout<<string(19,'_')<<endl;
+            cout<<setw(235)<<setiosflags( ios::right)<<"Current user: "<<( *User )->GetAccountNo()<<endl;
             PrintMenu();
             cin>>nChoice;
             HandleChoiceUser( nChoice,( *User ) );
@@ -297,10 +400,19 @@ void CManage::MenuUser()
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : Manage
+// Parameters  : Nil
+// Returns     : Nil
+// Description : The root function that handles the control flow
+//               of program
+// ------------------------------------------------------------------
 void CManage::Manage( void )
 {
     int nChoice;
 
+    cout<<"\n\n\n\t\t\t\tWelcome to XYZ Bank";
+    sleep_for( seconds( 4 ) );
     while( 1 )
     {
         system( "cls" );
@@ -308,10 +420,6 @@ void CManage::Manage( void )
         nChoice = MainMenu();
         switch( nChoice )
         {
-            case 0: cout<<"Thank you for using Banking Software"<<endl;
-                    cout<<"Program Exiting.\n\n\n";
-                    exit( 0 );
-                    break;
 
             case 1: MenuUser();
                     break;
@@ -319,6 +427,10 @@ void CManage::Manage( void )
             case 2: MenuAdmin();
                     break;
 
+            case 9: cout<<"Thank you for using Banking Software"<<endl;
+                    cout<<"Program Exiting.\n\n\n";
+                    exit( 0 );
+                    break;
 
             default:cout<<"Invalid Choice. Try again."<<endl;
                     cout<<"Press any button to continue";

@@ -88,7 +88,6 @@ void CAdmin::AddNew( void )
 Gre:
     cout<<"Gender( M/F/O )\t\t: ";
     cin>>cGender;
-    cGender = toupper( cGender );
     if( cGender == 'M' || cGender == 'F' || cGender == 'O' )
     {
         cout<<"Courses\t\t:\n";

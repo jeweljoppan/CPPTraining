@@ -61,8 +61,7 @@ CComplex CComplex::operator +( CComplex const &obj )
 // ------------------------------------------------------------------
 void CComplex::PrintData( void )
 {
-    system( "cls" );
-    cout<<"Value of c3 is "<<m_fReal<<"+ i"<<m_fImaginary;
+    cout<<"\nValue of c3 is "<<m_fReal<<"+ i"<<m_fImaginary;
     cout<<"\n";
 }
 
@@ -75,5 +74,5 @@ void CComplex::PrintData( void )
 void Intro()
 {
     cout<<"\nThis program shows the implementation of operator overloading.";
-    cout<<"\nSum of two objects(c1 and c2) will be stored in new object c3.";
+    cout<<"\nSum of two complex numbers (c1 and c2) will be stored in complex number c3.";
 }

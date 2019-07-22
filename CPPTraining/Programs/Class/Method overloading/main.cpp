@@ -18,24 +18,32 @@ int main()
     CVolume volume;
     int nChoice;
     int nFlag = -1;
+    char cCheck = 'Y';
 
-    cout<<"\n1. CUBE";
-    cout<<"\n2. CUBOID";
-    cout<<"\n3. SPHERE";
-    cout<<"\nEnter integer corresponding to the shape of choice: ";
-    cin>>nChoice;
-    cout<<"\n\n";
-    nFlag = volume.GetMeasure( nChoice );
-    if( nFlag == -1)
-    {
-        cout<<"\nInvalid Input. Press a button to continue.";
-    }
-    else if ( nFlag = 1)
-    {
-        cout<<"\nData entry successful. Press a button to continue.";
-    }
-    getch();
-    system( "cls" );
-    volume.PrintVolume();
+    do{
+        cout<<"\n1. CUBE";
+        cout<<"\n2. CUBOID";
+        cout<<"\n3. SPHERE";
+        cout<<"\nEnter integer corresponding to the shape of choice: ";
+        cin>>nChoice;
+        cout<<"\n\n";
+        nFlag = volume.GetMeasure( nChoice );
+        if( nFlag == -1)
+        {
+            cout<<"\nInvalid Input. ";
+            goto skip;
+        }
+        else if ( nFlag = 1)
+        {
+            cout<<"\nData entry successful. ";
+        }
+        volume.PrintVolume();
+        skip:
+        cout<<"Enter 'Y' to try again: ";
+        cin>>cCheck;
+        cCheck = toupper( cCheck );
+        system( "cls" );
+    }while( cCheck == 'Y' );
+    cout<<"Program exited"<<endl;
     return 0;
 }

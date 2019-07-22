@@ -21,14 +21,14 @@ int main()
 
 
     Intro();
-    cout<<"\n\nEnter the real part of c1: ";
+    cout<<"\n\nEnter the real part of c1\t: ";
     cin>>fReal;
-    cout<<"Enter the imaginary part of c1: ";
+    cout<<"Enter the imaginary part of c1\t: ";
     cin>>fImaginary;
     CComplex c1( fReal,fImaginary );
-    cout<<"\nEnter the real part of c2: ";
+    cout<<"\nEnter the real part of c2\t: ";
     cin>>fReal;
-    cout<<"Enter the imaginary part of c2: ";
+    cout<<"Enter the imaginary part of c2\t: ";
     cin>>fImaginary;
     CComplex c2( fReal,fImaginary );
     CComplex c3 = ( c1 + c2 );

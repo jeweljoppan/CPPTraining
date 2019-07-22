@@ -13,17 +13,17 @@
 #ifndef CACCOUNT_H
 #define CACCOUNT_H
 
-#include<iostream>
-#include<conio.h>
-#include<stdlib.h>
-#include<vector>
-#include<string>
+#include <iostream>
+#include <conio.h>
+#include <stdlib.h>
+#include <iomanip>
+#include <vector>
+#include <string>
 #include <chrono>
 #include <thread>
 
 using namespace std::this_thread;
 using namespace std::chrono;
-
 using namespace std;
 
 /*
@@ -50,6 +50,7 @@ class CAccount
         void DisplayType( void );
         void ViewBalance( void );
         void DisplayDetails( void );
+        void DisplayTab();
         string GetAccountNo( void );
         virtual ~CAccount( void );
 

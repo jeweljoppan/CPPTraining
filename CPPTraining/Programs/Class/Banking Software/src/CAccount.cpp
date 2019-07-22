@@ -63,12 +63,22 @@ void CAccount::DisplayType( void )
 // ------------------------------------------------------------------
 void CAccount::DisplayDetails( void )
 {
-    cout<<"NAME: "<<m_szName<<endl;
-    cout<<"ACCOUNT NUMBER: "<<m_szAccountno<<endl;
-    cout<<"ACCOUNT TYPE: ";
+    cout<<"NAME\t\t: "<<m_szName<<endl;
+    cout<<"ACCOUNT NUMBER\t: "<<m_szAccountno<<endl;
+    cout<<"ACCOUNT TYPE\t: ";
     DisplayType();
-    cout<<"\nBALANCE: "<<m_fBalance;
-    sleep_for( seconds( 2 ) );
+    cout<<"\nBALANCE\t\t: "<<m_fBalance;
+    cout<<"\n\n\nPress any key to continue.";
+    getch();
+}
+
+void CAccount::DisplayTab( void )
+{
+    cout<<"\t"<<m_szName;
+    cout<<"\t\t"<<m_szAccountno;
+    cout<<"\t\t";
+    DisplayType();
+    cout<<"\t\t"<<m_fBalance<<endl;
 }
 
 // ------------------------------------------------------------------

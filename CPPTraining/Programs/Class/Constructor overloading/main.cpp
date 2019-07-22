@@ -16,28 +16,37 @@
 int main()
 {
     int nChoice;
-    cout<<"\nShapes: ";
-    cout<<"\n\n1. CUBE";
-    cout<<"\n2. CUBOID";
-    cout<<"\n3. SPHERE";
-    cout<<"\n\nEnter integer corresponding to the shape of choice: ";
-    cin>>nChoice;
-    cout<<"\n\n";
-    system( "cls" );
-    switch( nChoice )
+    char cCheck = 'Y';
+
+    do
     {
-        case 1: Cube();
-                break;
+        cout<<"\nShapes: ";
+        cout<<"\n\n1. CUBE";
+        cout<<"\n2. CUBOID";
+        cout<<"\n3. SPHERE";
+        again:
+        cout<<"\n\nEnter integer corresponding to the shape of choice: ";
+        cin>>nChoice;
+        cout<<"\n\n";
+        switch( nChoice )
+        {
+            case 1: Cube();
+                    break;
 
-        case 2: Cuboid();
-                break;
+            case 2: Cuboid();
+                    break;
 
-        case 3: Sphere();
-                break;
+            case 3: Sphere();
+                    break;
 
-        default: cout<<"\nInvalid Input. Press a button to continue.";
-                 getch();
-                 exit(0);
-    }
-    return 87;
+            default: cout<<"\nInvalid Input.";
+                     goto again;
+        }
+        cout<<"Enter 'Y' to try again: ";
+        cin>>cCheck;
+        system( "cls" );
+        cCheck = toupper( cCheck );
+    }while( cCheck == 'Y' );
+    cout<<"Program exited\n\n";
+    return 0;
 }

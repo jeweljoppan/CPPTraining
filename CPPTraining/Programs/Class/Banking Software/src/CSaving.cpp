@@ -62,7 +62,19 @@ void CSaving::WithDraw( /*IN*/ float fAmount )
 // ------------------------------------------------------------------
 void CSaving::CalculateInterest( void )
 {
-    cout<<"Interest: "<<m_fBalance * CIRATE;
+    int nYears;
+    float fInterest;
+    float fBalance = m_fBalance;
+
+    cout<<"To calculate interest input the time span of deposit.\n\n";
+    cout<<"number of years:";
+    cin>>nYears;
+    while( nYears > 0 )
+    {
+        fInterest = fBalance * CIRATE;
+        fBalance = fBalance + fInterest;
+    }
+    cout<<"Interest: "<<fInterest;
 }
 
 // ------------------------------------------------------------------

@@ -10,7 +10,6 @@
  *
  */
 
-
 #include "CCurrent.h"
 
 //Static variable that keep tracks of the Current account number.
@@ -78,13 +77,13 @@ void CCurrent::CheckMin()
 {
     if( m_fBalance < ACCOUNT_MINIMUM )
     {
-        cout<<"BALANCE BELOW LIMIT!!"<<endl;
+        cout<<"\nBALANCE BELOW LIMIT!!"<<endl;
         cout<<"Rs 20 will be deducted from account."<<endl;
         m_fBalance = m_fBalance - PENALITY;
     }
     else
     {
-        cout<<"Balance Above Limit"<<endl;
+        cout<<"\nBalance Above Limit"<<endl;
     }
 
 }
