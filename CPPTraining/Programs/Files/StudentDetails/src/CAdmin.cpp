@@ -90,7 +90,7 @@ void CAdmin::AddNew( void )
         DOJre:
         cout<<"\nEnter your course: ";
         cin>>nCourse;
-        if( nCourse== 1 || nCourse == 2 || nCourse == 3)
+        if( nCourse == 1 || nCourse == 2 || nCourse == 3)
         {
             cout<<"Date of Join ( DD/MM/YYYY )\t\t: ";
             cin>>szDateOfJoin;
@@ -137,7 +137,7 @@ void CAdmin::ViewSpec( void )
 
  void CAdmin::DeleteAll( void )
  {
-
+    m_file.ClearFile();
  }
 
  void CAdmin::Hold( void )
@@ -149,7 +149,7 @@ void CAdmin::ViewSpec( void )
 void CAdmin::ViewAll( void )
 {
     Intro();
-    cout<<setw( 10 )<<"Name";
+    cout<<setw( 10 )<<setiosflags(ios::left)<<"Name";
     cout<<setw( 10 )<<"Admission";
     cout<<setw( 10 )<<"Gender";
     cout<<setw( 10 )<<"Course";
@@ -164,5 +164,6 @@ void CAdmin::Manage( void )
     {   Intro();
         Menu();
         HandleChoice();
+        m_file.~CFile();
     }
 }

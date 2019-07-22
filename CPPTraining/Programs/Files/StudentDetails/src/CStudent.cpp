@@ -6,7 +6,7 @@ CStudent::CStudent()
 {
     m_data.nAdmNo = 0;
     m_data.szName = "\0";
-    m_data.cGender = '\0';
+    m_data.cGender = '_';
     m_data.szCourse = "\0";
     m_data.szDateOfJoin = "01/01/1990";
 }
@@ -31,7 +31,7 @@ void CStudent::AddData( /*IN*/ int nAdmno,
         case 3: m_data.szCourse = "Commerce";
                 break;
     }
-    m_data.szDateOfJoin = szDateOfJoin;
+    m_data.szDateOfJoin = szDateOfJoin                                                                                  ;
     cout<<"Saving details to file."<<endl;
 }
 
