@@ -48,3 +48,33 @@
 1563886326 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\src\cinputvalidate.cpp
 	"CInputValidate.h"
 
+1563385011 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\main.cpp
+	"CManager.h"
+
+1563895687 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cmanager.h
+	"CEmpDetails.h"
+	"CInputValidate.h"
+
+1563385011 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cempdetails.h
+	<iostream>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<conio.h>
+
+1563911041 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cinputvalidate.h
+	<iostream>
+	<string>
+	<limits>
+	<float.h>
+	<stdlib.h>
+
+1563385011 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cempdetails.cpp
+	"CEmpDetails.h"
+
+1563911326 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cmanager.cpp
+	"CManager.h"
+
+1563912051 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cinputvalidate.cpp
+	"CInputValidate.h"
+

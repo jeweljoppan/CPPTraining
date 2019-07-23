@@ -14,8 +14,6 @@
 
 #include "CEmpDetails.h"
 #include "CInputValidate.h"
-#include "sstream"
-#include "typeinfo"
 
 /*
  * Class <CManager>
@@ -47,7 +45,7 @@ class CManager
         void DoShift( int,int );
         void GetData( void );
         void PrintData();
-        CInputValidate check;
+        CInputValidate m_check;
     public:
         CManager( void );
         ~CManager( void );

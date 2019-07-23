@@ -13,8 +13,12 @@
 #define CINPUTVALIDATE_H
 
 #include <iostream>
-#include <ctype.h>
-#include "typeinfo"
+#include <string>
+#include <limits>
+#include <float.h>
+#include <stdlib.h>
+
+using namespace std;
 
 /*
  * Class <CInpuValidation>
@@ -28,15 +32,13 @@
 class CInputValidate
 {
     public:
-        int Integer( int T , const int nLow = -2147483648, const int nHigh = 2147483647 );
-        template <class T>
-        int Character( T );
-        template <class T>
-        int CharArray( T, const int );
-        template <class T>
-        int Stringg( T );
-        template <class T>
-        int Date( T, const int, const int, const char [] = { 'D','D','/','M','M','/','Y','Y','Y','Y' } );
+        int Integer( const int nLow = INT_MIN, const int nHigh = INT_MAX );
+        float Float( const float fLow = FLT_MIN, const float fHigh = FLT_MAX );
+        double Double( const double dLow = DBL_MIN, const double dHigh = DBL_MAX );
+        int Character( char );
+        char* CharArray( char *,const int );
+        string Stringg( void );
+        string Date(  const int nYearUpper = 2019, const int nYearLower = 1900, const char [] = "DD/MM/YYYY" );
 };
 
 #endif // CINPUTVALIDATE_H

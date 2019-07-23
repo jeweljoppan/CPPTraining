@@ -20,6 +20,7 @@ class CAdmin
     private:
         CStudent m_student;
         CFile m_file;
+
         static int m_nAdmCount;
         void Menu( void );
         void HandleChoice( void );

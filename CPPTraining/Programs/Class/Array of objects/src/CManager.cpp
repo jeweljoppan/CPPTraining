@@ -32,31 +32,16 @@ void CManager::Intro( void )
 // ------------------------------------------------------------------
 int CManager::AllocateSpace( void )
 {
-    string sInput;
-    again:
     cout<<"\n\nEnter the number of employees: ";
-    cin>>sInput;
-	stringstream szInput(sInput);
-    szInput >> m_nCount;
-    getchar();
-    getch();
-    m_nFlag = check.Integer( m_nCount );
-    if( m_nFlag == 1)
+    m_nCount = m_check.Integer( 0 );
+    if( CEmpDetails *pempDetails = new CEmpDetails[m_nCount] )
     {
-        if( CEmpDetails *pempDetails = new CEmpDetails[m_nCount] )
-        {
-            m_pEmpDetails = pempDetails;
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
+        m_pEmpDetails = pempDetails;
+        return 1;
     }
     else
     {
-        cout<<"\nInvalid input. Try again.\n";
-        goto again;
+        return 0;
     }
 }
 
@@ -69,8 +54,9 @@ int CManager::AllocateSpace( void )
 // ------------------------------------------------------------------
 int CManager::StoreData( int nCount )
 {
+    m_nFlag = 0;
     cout<<"\n\nName: ";
-    getline( cin,m_szName );
+    m_szName = m_check.Stringg();
     cout<<"Available designations.";
     cout<<"\n\t1: Manager";
     cout<<"\n\t2: Developer";
@@ -176,8 +162,8 @@ void CManager::PrintData( void )
     int nTemp = 0;
 
     system( "cls" );
-    cout<<"Details of employees grouped based on designation:\n";
-    cout<<string(50,'_');
+    cout<<"\t\tDetails of employees grouped based on designation\n";
+    cout<<"\t\t"<<string(50,'_');
     cout<<"\n\nSI\tName\t\tAge\t\tSalary\t\tDesignation\n";
     while( nTemp < m_nCount )
     {
