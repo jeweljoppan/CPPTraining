@@ -18,8 +18,7 @@
 class CFile
 {
     private:
-        ifstream istorage;
-        ofstream ostorage;
+        fstream storage;
     public:
         CFile( void );
         void Write( CStudent );

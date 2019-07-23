@@ -50,7 +50,7 @@ class CStudent
         struct stStudent m_data;
     public:
         CStudent( void );
-        void AddData( int, char [], char, int, char [] );
+        void AddData( int, char [], char, char, char [] );
         int GetAdmNo( void );
         void View( void );
         void ViewTab( void );

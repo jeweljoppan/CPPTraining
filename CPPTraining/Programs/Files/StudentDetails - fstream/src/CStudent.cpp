@@ -14,21 +14,21 @@ CStudent::CStudent()
 void CStudent::AddData( /*IN*/ int nAdmno,
                         /*IN*/ char szName[],
                         /*IN*/ char cGender,
-                        /*IN*/ int nCourse,
+                        /*IN*/ char cCourse,
                         /*IN*/ char szDateOfJoin[] )
 {
     m_data.nAdmNo = nAdmno;
     strcpy( m_data.szName, szName );
     m_data.cGender = cGender;
-    switch( nCourse )
+    switch( cCourse )
     {
-        case 1: strcpy( m_data.szCourse, "Computer Science" );
+        case '1': strcpy( m_data.szCourse, "Computer Science" );
                 break;
 
-        case 2: strcpy( m_data.szCourse, "Biology" );
+        case '2': strcpy( m_data.szCourse, "Biology" );
                 break;
 
-        case 3: strcpy( m_data.szCourse, "Commerce" );
+        case '3': strcpy( m_data.szCourse, "Commerce" );
                 break;
     }
     strcpy( m_data.szDateOfJoin, szDateOfJoin );                                                                                  ;

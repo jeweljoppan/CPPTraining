@@ -18,3 +18,33 @@
 1563344847 source:d:\users\jewel\work\t0571\cpptraining\programs\class\array of objects\src\cmanager.cpp
 	"CManager.h"
 
+1562917361 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\main.cpp
+	"CManager.h"
+
+1563883970 d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\include\cmanager.h
+	"CEmpDetails.h"
+	"CInputValidate.h"
+	"sstream"
+	"typeinfo"
+
+1563166613 d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\include\cempdetails.h
+	<iostream>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<conio.h>
+
+1563884172 d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\include\cinputvalidate.h
+	<iostream>
+	<ctype.h>
+	"typeinfo"
+
+1563358697 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\src\cempdetails.cpp
+	"CEmpDetails.h"
+
+1563886322 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\src\cmanager.cpp
+	"CManager.h"
+
+1563886326 source:d:\users\jewel\work\wfh\cpptraining\cpptraining\programs\class\array of objects\src\cinputvalidate.cpp
+	"CInputValidate.h"
+

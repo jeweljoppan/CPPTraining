@@ -32,35 +32,35 @@ void CAdmin::Menu( void )
 
 void CAdmin::HandleChoice( void )
 {
-    int nChoice;
+    char cChoice;
 
-re:
+    re:
     cout<<"\nEnter your choice (1-5 or 9): ";
-    cin>>nChoice;
+    cin>>cChoice;
     getchar();
-    switch( nChoice )
+    switch( cChoice )
     {
-    case 1:
+    case '1':
         AddNew();
         break;
 
-    case 2:
+    case '2':
         ViewSpec();
         break;
 
-    case 3:
+    case '3':
         ViewAll();
         break;
 
-    case 4:
+    case '4':
         DeleteSpec();
         break;
 
-    case 5:
+    case '5':
         DeleteAll();
         break;
 
-    case 9:
+    case '9':
         system( "cls" );
         cout<<"Program exiting\n\n";
         exit( 0 );
@@ -77,7 +77,7 @@ void CAdmin::AddNew( void )
 {
     char szName[MAX_LENGTH];
     char cGender;
-    int nCourse;
+    int cCourse;
     char szDateOfJoin[DATE_LENGTH];
 
     Intro();
@@ -97,8 +97,8 @@ void CAdmin::AddNew( void )
         cout<<"\t3. Commerce"<<endl;
 DOJre:
         cout<<"\nEnter your course: ";
-        cin>>nCourse;
-        if( nCourse == 1 || nCourse == 2 || nCourse == 3)
+        cin>>cCourse;
+        if( cCourse == '1' || cCourse == '2' || cCourse == '3' )
         {
             cout<<"Date of Join ( DD/MM/YYYY )\t\t: ";
             cin>>szDateOfJoin;
@@ -114,7 +114,7 @@ DOJre:
         cout<<"Invalid input. Try again.\n";
         goto Gre;
     }
-    m_student.AddData( m_nAdmCount++, szName, cGender, nCourse, szDateOfJoin);
+    m_student.AddData( m_nAdmCount++, szName, cGender, cCourse, szDateOfJoin);
     m_file.Write( m_student );
 }
 

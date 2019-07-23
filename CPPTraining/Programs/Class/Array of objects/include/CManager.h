@@ -12,7 +12,10 @@
 #ifndef CMANAGER_H
 #define CMANAGER_H
 
-#include"CEmpDetails.h"
+#include "CEmpDetails.h"
+#include "CInputValidate.h"
+#include "sstream"
+#include "typeinfo"
 
 /*
  * Class <CManager>
@@ -28,6 +31,7 @@ class CManager
     private:
         CEmpDetails *m_pEmpDetails;
         int m_nCount;
+        int m_nFlag;
         string m_szName;
         int m_nDesignation;
         int m_nAge;
@@ -43,6 +47,7 @@ class CManager
         void DoShift( int,int );
         void GetData( void );
         void PrintData();
+        CInputValidate check;
     public:
         CManager( void );
         ~CManager( void );

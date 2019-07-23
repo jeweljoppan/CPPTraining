@@ -32,18 +32,31 @@ void CManager::Intro( void )
 // ------------------------------------------------------------------
 int CManager::AllocateSpace( void )
 {
+    string sInput;
+    again:
     cout<<"\n\nEnter the number of employees: ";
-    cin>>m_nCount;
+    cin>>sInput;
+	stringstream szInput(sInput);
+    szInput >> m_nCount;
     getchar();
-
-    if( CEmpDetails *pempDetails = new CEmpDetails[m_nCount] )
+    getch();
+    m_nFlag = check.Integer( m_nCount );
+    if( m_nFlag == 1)
     {
-        m_pEmpDetails = pempDetails;
-        return 1;
+        if( CEmpDetails *pempDetails = new CEmpDetails[m_nCount] )
+        {
+            m_pEmpDetails = pempDetails;
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
     else
     {
-        return 0;
+        cout<<"\nInvalid input. Try again.\n";
+        goto again;
     }
 }
 
@@ -198,6 +211,7 @@ CManager::CManager( void )
     m_nManager = 0;
     m_nDeveloper = 0;
     m_nTrainee = 0;
+    m_nFlag = 0;
 }
 
 // ------------------------------------------------------------------
