@@ -17,6 +17,8 @@
 #include <limits>
 #include <float.h>
 #include <stdlib.h>
+#include <conio.h>
+#include <cstring>
 
 using namespace std;
 
@@ -36,9 +38,10 @@ class CInputValidate
         float Float( const float fLow = FLT_MIN, const float fHigh = FLT_MAX );
         double Double( const double dLow = DBL_MIN, const double dHigh = DBL_MAX );
         int Character( char );
-        char* CharArray( char *,const int );
+        void CharArray( char *,const int, const int );
         string Stringg( const int nLength = INT_MAX );
         string Date(  const int nYearUpper = 2019, const int nYearLower = 1900, const char [] = "DD/MM/YYYY" );
+        void Date(  char *, const int nYearUpper = 2019, const int nYearLower = 1900, const char [] = "DD/MM/YYYY" );
 };
 
 #endif // CINPUTVALIDATE_H

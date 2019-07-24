@@ -36,10 +36,12 @@
 		</Compiler>
 		<Unit filename="include/CAdmin.h" />
 		<Unit filename="include/CFile.h" />
+		<Unit filename="include/CInputValidate.h" />
 		<Unit filename="include/CStudent.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/CAdmin.cpp" />
 		<Unit filename="src/CFile.cpp" />
+		<Unit filename="src/CInputValidate.cpp" />
 		<Unit filename="src/CStudent.cpp" />
 		<Extensions>
 			<code_completion />

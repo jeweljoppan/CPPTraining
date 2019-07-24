@@ -21,6 +21,7 @@ class CFile
         fstream storage;
     public:
         CFile( void );
+        int ReturnAdmnNo();
         void Write( CStudent );
         CStudent GetData( int );
         void ViewAll( void );

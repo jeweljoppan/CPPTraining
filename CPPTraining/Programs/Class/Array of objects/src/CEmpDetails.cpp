@@ -42,8 +42,8 @@ int CEmpDetails::DataEntry ( /*IN*/ string szName,
 // ------------------------------------------------------------------
 void CEmpDetails::DisplayData( void )
 {
-    cout<<"\t"<<m_szName;
-    cout<<"\t\t"<<m_nAge;
-    cout<<"\t\t"<<m_fSalary;
-    cout<<"\t\t"<<m_szDesignation;
+    cout<<setw(20)<<setiosflags( ios::left )<<m_szName;
+    cout<<setw(5)<<setiosflags( ios::left )<<m_nAge;
+    cout<<setw(15)<<setiosflags( ios::left )<<m_fSalary;
+    cout<<setw(10)<<setiosflags( ios::left )<<m_szDesignation;
 }

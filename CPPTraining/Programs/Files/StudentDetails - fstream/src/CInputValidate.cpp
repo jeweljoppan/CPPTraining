@@ -63,32 +63,24 @@ int CInputValidate::Integer( /*IN*/ const int nLow ,
 float CInputValidate::Float( /*IN*/ const float fLow ,
                              /*IN*/ const float fHigh )
 {
-    string szData;
-    int nTemp;
-    string szTemp;
-
-    again:
-    getline( cin, szData );
-    szTemp = szData;
-    nTemp = stof( szData.c_str() );
-    szTemp = to_string( nTemp );
-    if( szTemp == szData )
+    float  fInput = 0;
+    bool bValid= false;
+    do
     {
-        if( ( nTemp >= fLow ) && ( nTemp <= fHigh ) )
-        {
-            return nTemp;
+        cout << "Enter a number: " ;
+        cin >> fInput;
+        if ( cin.good() && ( fInput > fLow ) && ( fInput < fHigh ) )
+    {
+            bValid = true;
         }
         else
         {
-            cout<<"Invalid data. Try again."<<endl;
-            goto again;
+            cin.clear();
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+            cout << "Invalid data. Try again." << endl;
         }
-    }
-    else
-    {
-        cout<<"Invalid data. Try again."<<endl;
-        goto again;
-    }
+    } while ( !bValid );
+    return ( fInput );
 }
 
 // ------------------------------------------------------------------
@@ -102,32 +94,24 @@ float CInputValidate::Float( /*IN*/ const float fLow ,
 double CInputValidate::Double( /*IN*/ const double dLow ,
                              /*IN*/ const double dHigh )
 {
-    string szData;
-    int nTemp;
-    string szTemp;
-
-    again:
-    getline( cin, szData );
-    szTemp = szData;
-    nTemp = stod( szData.c_str() );
-    szTemp = to_string( nTemp );
-    if( szTemp == szData )
+    double  dInput = 0;
+    bool bValid= false;
+    do
     {
-        if( ( nTemp >= dLow ) && ( nTemp <= dHigh ) )
-        {
-            return nTemp;
+        cout << "Enter a number: " ;
+        cin >> dInput;
+        if ( cin.good() && ( dInput > dLow ) && ( dInput < dHigh ) )
+    {
+            bValid = true;
         }
         else
         {
-            cout<<"Invalid data. Try again."<<endl;
-            goto again;
+            cin.clear();
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+            cout << "Invalid data. Try again." << endl;
         }
-    }
-    else
-    {
-        cout<<"Invalid data. Try again."<<endl;
-        goto again;
-    }
+    } while ( !bValid );
+    return ( dInput );
 }
 
 // ------------------------------------------------------------------
@@ -161,31 +145,49 @@ int CInputValidate::Character( /*IN*/ char szData )
 // Returns     : int
 // Description : Checks and validates whether user inputs are characters
 // ------------------------------------------------------------------
-char* CInputValidate::CharArray( /*IN*/ char *szData,
-                               /*IN*/ const int nLength )
+void CInputValidate::CharArray( /*IN*/  char *szData,
+                                /*IN*/ const int nLength,
+                                /*IN*/ const int nPermittedLength )
 {
-    int i;
+    int nIndex;
+    int nFlag;
 
     again:
-    i = 0;
-    while( i < nLength )
-	{
-	    szData[i]=getchar();
-		if ( Character( szData[i] ) == 1 )
-		{
-            i++;
-		}
-		else if( szData[i] == '\n' )
+    nIndex = 0;
+    nFlag = 0;
+    strcpy( szData,"\0" );
+    cin.clear();
+    cin.getline( szData,nLength );
+    cin.sync();
+    if( ( strlen( szData ) > nPermittedLength ) )
+    {
+        cout<<"Data length more than "<<nPermittedLength<<". Try again."<<endl;
+        goto again;
+    }
+    else if ( strlen( szData ) == 0 )
+    {
+        cout<<"Invalid data. Try again."<<endl;
+        goto again;
+    }
+    else
+    {
+        while( szData[nIndex] != '\0' )
         {
-            szData[i]='\0';
-            return szData;
+            if( szData[nIndex] == ' ' )
+            {
+                nIndex++;
+            }
+            else if ( Character( szData[nIndex] ) == 1 )
+            {
+                nIndex++;
+            }
+            else
+            {
+                cout<<"Invalid data. Try Again"<<endl;
+                goto again;
+            }
         }
-        else
-        {
-            cout<<"Invalid data. Try Again"<<endl;
-            goto again;
-        }
-	}
+    }
 }
 
 // ------------------------------------------------------------------
@@ -202,7 +204,12 @@ string CInputValidate::Stringg( /*IN*/ const int nLength )
     again:
     szData.clear();
     getline( cin,szData );
-    if( szData.size() > nLength )
+    if( szData.size() == 0 )
+    {
+        cout<<"Invalid data. Try again."<<endl;
+        goto again;
+    }
+    else if( szData.size() > nLength )
     {
         cout<<"Data length more than "<<nLength<<". Try again."<<endl;
         goto again;
@@ -211,7 +218,7 @@ string CInputValidate::Stringg( /*IN*/ const int nLength )
     {
         for ( auto it = szData.begin(); it < szData.end();  )
         {
-            if ( Character( *it ) == 1 )
+            if ( ( Character( *it ) == 1 ) || (*it == ' ') )
             {
                 ++it;
             }
@@ -236,8 +243,8 @@ string CInputValidate::Stringg( /*IN*/ const int nLength )
 //               in valid format
 // ------------------------------------------------------------------
 string CInputValidate::Date( /*IN*/ const int nYearUpper,
-                          /*IN*/ const int nYearLower,
-                          /*IN*/ const char szFormat[] )
+                             /*IN*/ const int nYearLower,
+                             /*IN*/ const char szFormat[] )
 {
     int i = 0;
     int nTemp;
@@ -252,9 +259,9 @@ string CInputValidate::Date( /*IN*/ const int nYearUpper,
         if( ( szFormat[i] == 'D' ) && ( szFormat[i+1] == 'D' ) )
         {
             szTemp =szData[i];
-            nTemp = atoi(szTemp.c_str()) * 10 ;
+            nTemp = atoi( szTemp.c_str() ) * 10 ;
             szTemp = szData[i+1];
-            nTemp = nTemp + atoi(szTemp.c_str());
+            nTemp = nTemp + atoi( szTemp.c_str() );
             cout<<nTemp;
             if( ( nTemp >= 1 ) && ( nTemp <= 31 ) )
             {
@@ -266,12 +273,108 @@ string CInputValidate::Date( /*IN*/ const int nYearUpper,
                 goto again;
             }
         }
-        if( ( szFormat[i] == 'M' ) && ( szFormat[i+1] == 'M' ) )
+        else if( ( szFormat[i] == 'M' ) && ( szFormat[i+1] == 'M' ) )
         {
             szTemp =szData[i];
-            nTemp = atoi(szTemp.c_str()) * 10 ;
+            nTemp = atoi( szTemp.c_str() ) * 10 ;
             szTemp = szData[i+1];
-            nTemp = nTemp + atoi(szTemp.c_str());
+            nTemp = nTemp + atoi( szTemp.c_str() );
+            if( ( nTemp >= 1 ) && ( nTemp <= 12 ) )
+            {
+                i = i + 2;
+            }
+            else
+            {
+                cout<<"Invalid Data.Try again."<<endl;
+                goto again;
+            }
+        }
+        else if( ( szFormat[i] == 'Y' ) && ( szFormat[i+1] == 'Y' ) &&
+            ( szFormat[i+2] == 'Y' ) && ( szFormat[i+3] == 'Y' ) )
+        {
+            szTemp =szData[i];
+            nTemp = atoi( szTemp.c_str() ) * 1000 ;
+            szTemp = szData[i+1];
+            nTemp = nTemp + atoi( szTemp.c_str() )*100;
+            szTemp = szData[i+2];
+            nTemp = nTemp + atoi( szTemp.c_str() )*10;
+            szTemp = szData[i+3];
+            nTemp = nTemp + atoi( szTemp.c_str() );
+            if( ( nTemp >= nYearLower ) && ( nTemp <= nYearUpper ) )
+            {
+                i = i + 4;
+            }
+            else
+            {
+                cout<<"Invalid Data.Try again."<<endl;
+                goto again;
+            }
+        }
+        else if( ( szFormat[i] == '/' ) || ( szFormat[i] == '-' ) || ( szFormat[i] == '.' ) )
+        {
+            ++i;
+        }
+        else if( szFormat[i] == '\0' )
+        {
+            break;
+        }
+        else
+        {
+                cout<<"Invalid Data.Try again."<<endl;
+                goto again;
+        }
+    }
+    return szData;
+}
+
+// ------------------------------------------------------------------
+// Method      : Date
+// Parameters  :
+//  <param 1>  - < char *szData>   - Base pointer of input array containing date.
+//  <param 2>  - <int nYearUpper>  - Upper bound for year input.
+//  <param 3>  - <int nYeayLower>  - Lower bound for year input.
+//  <param 4>  - <char szFormat[]> - Format of date input.
+// Returns     : int
+// Description : Checks and validates whether user inputs is a date
+//               in valid format
+// ------------------------------------------------------------------
+void CInputValidate::Date(  /*IN*/ char *szData,
+                            /*IN*/ const int nYearUpper,
+                            /*IN*/ const int nYearLower,
+                            /*IN*/ const char szFormat[] )
+{
+    int i;
+    int nTemp;
+
+    again:
+    i = 0;
+    nTemp = 0;
+    memset( szData, '\0', sizeof( szData ) );
+    cin.getline(szData, 11 );
+    if (cin.fail()) {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    while( szFormat[i] != '\0' )
+    {
+        if( ( szFormat[i] == 'D' ) && ( szFormat[i+1] == 'D' ) )
+        {
+            nTemp = ( ( int )( szData[i] ) - 48 ) * 10 ;
+            nTemp = nTemp + ( ( int )( szData[i+1] ) - 48 ) ;
+            if( ( nTemp >= 1 ) && ( nTemp <= 31 ) )
+            {
+                i = i + 2;
+            }
+            else
+            {
+                cout<<"Invalid Data.Try again."<<endl;
+                goto again;
+            }
+        }
+        else if( ( szFormat[i] == 'M' ) && ( szFormat[i+1] == 'M' ) )
+        {
+            nTemp = ( ( int )( szData[i] ) - 48 ) * 10 ;
+            nTemp = nTemp + ( ( int )( szData[i+1] ) - 48 ) ;
             if( ( nTemp >= 1 ) && ( nTemp <= 12 ) )
             {
                 i = i + 2;
@@ -285,14 +388,10 @@ string CInputValidate::Date( /*IN*/ const int nYearUpper,
         if( ( szFormat[i] == 'Y' ) && ( szFormat[i+1] == 'Y' ) &&
             ( szFormat[i+2] == 'Y' ) && ( szFormat[i+3] == 'Y' ) )
         {
-            szTemp =szData[i];
-            nTemp = atoi(szTemp.c_str()) * 1000 ;
-            szTemp = szData[i+1];
-            nTemp = nTemp + atoi(szTemp.c_str())*100;
-            szTemp = szData[i+2];
-            nTemp = nTemp + atoi(szTemp.c_str())*10;
-            szTemp = szData[i+3];
-            nTemp = nTemp + atoi(szTemp.c_str());
+            nTemp = ( ( int )( szData[i] ) - 48 ) * 1000 ;
+            nTemp = nTemp + ( ( int )( szData[i+1] ) - 48 ) * 100 ;
+            nTemp = nTemp + ( ( int )( szData[i+2] ) - 48 ) * 10 ;
+            nTemp = nTemp + ( ( int )( szData[i+3] ) - 48 )  ;
             if( ( nTemp >= nYearLower ) && ( nTemp <= nYearUpper ) )
             {
                 i = i + 4;
@@ -303,9 +402,13 @@ string CInputValidate::Date( /*IN*/ const int nYearUpper,
                 goto again;
             }
         }
-        if( ( szFormat[i] == '/' ) || ( szFormat[i] == '-' ) || ( szFormat[i] == '.' ) || (szFormat[i] == '\0') )
+        else if( ( szFormat[i] == '/' ) || ( szFormat[i] == '-' ) || ( szFormat[i] == '.' ) )
         {
             ++i;
+        }
+        else if( szFormat[i] == '\0' )
+        {
+            break;
         }
         else
         {
@@ -313,5 +416,5 @@ string CInputValidate::Date( /*IN*/ const int nYearUpper,
                 goto again;
         }
     }
-    return szData;
 }
+

@@ -32,7 +32,7 @@ void CManager::Intro( void )
 // ------------------------------------------------------------------
 int CManager::AllocateSpace( void )
 {
-    cout<<"\n\nEnter the number of employees: ";
+    cout<<"\n\nEnter the number of employees: "<<endl;
     m_nCount = m_check.Integer( 0 );
     if( CEmpDetails *pempDetails = new CEmpDetails[m_nCount] )
     {
@@ -55,19 +55,18 @@ int CManager::AllocateSpace( void )
 int CManager::StoreData( int nCount )
 {
     m_nFlag = 0;
-    cout<<"\n\nName: ";
-    m_szName = m_check.Stringg();
+    cout<<"\n\nName: "<<endl;
+    m_szName = m_check.Stringg( 20 );
     cout<<"Available designations.";
     cout<<"\n\t1: Manager";
     cout<<"\n\t2: Developer";
     cout<<"\n\t3: Trainee";
-    cout<<"\n\nEnter the number corresponding to the designation: ";
-    cin>>m_nDesignation;
-    cout<<"Age: ";
-    cin>>m_nAge;
-    cout<<"Salary: ";
-    cin>>m_fSalary;
-    getchar();
+    cout<<"\n\nEnter the number corresponding to the designation: "<<endl;
+    m_nDesignation = m_check.Integer( 1, 3 );
+    cout<<"Age: "<<endl;
+    m_nAge = m_check.Integer( 18, 80 );
+    cout<<"Salary: "<<endl;
+    m_fSalary = m_check.Float( 0 );
     return SortData( nCount );
 }
 
@@ -162,12 +161,17 @@ void CManager::PrintData( void )
     int nTemp = 0;
 
     system( "cls" );
-    cout<<"\t\tDetails of employees grouped based on designation\n";
-    cout<<"\t\t"<<string(50,'_');
-    cout<<"\n\nSI\tName\t\tAge\t\tSalary\t\tDesignation\n";
+    cout<<"\tDetails of employees grouped based on designation\n";
+    cout<<"\t"<<string(50,'_')<<endl<<endl;
+    cout<<setw(5)<<setiosflags( ios::left )<<"SI";
+    cout<<setw(20)<<setiosflags( ios::left )<<"Name";
+    cout<<setw(5)<<setiosflags( ios::left )<<"Age";
+    cout<<setw(15)<<setiosflags( ios::left )<<"Salary";
+    cout<<setw(10)<<setiosflags( ios::left )<<"Designation";
+    cout<<endl<<endl;
     while( nTemp < m_nCount )
     {
-        cout<<"\n"<<nTemp+1;
+        cout<<setw(5)<<setiosflags( ios::left )<<nTemp+1;
         m_pEmpDetails[nTemp].DisplayData();
         nTemp++;
     }

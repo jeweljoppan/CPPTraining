@@ -18,6 +18,8 @@ void CStudent::AddData( /*IN*/ int nAdmno,
                         /*IN*/ char szDateOfJoin[] )
 {
     m_data.nAdmNo = nAdmno;
+    cout<<szName;
+    getch();
     strcpy( m_data.szName, szName );
     m_data.cGender = cGender;
     switch( cCourse )
@@ -31,6 +33,8 @@ void CStudent::AddData( /*IN*/ int nAdmno,
         case '3': strcpy( m_data.szCourse, "Commerce" );
                 break;
     }
+    cout<<szDateOfJoin;
+    getch();
     strcpy( m_data.szDateOfJoin, szDateOfJoin );                                                                                  ;
     cout<<"Saving details to file."<<endl;
 }
@@ -42,18 +46,18 @@ int CStudent::GetAdmNo( void )
 
 void CStudent::View( void )
 {
-    cout<<"Name\t\t:"<<m_data.szName<<endl;
-    cout<<"Admission Number:"<<m_data.nAdmNo<<endl;
-    cout<<"Gender\t\t:"<<m_data.cGender<<endl;
-    cout<<"Course\t\t:"<<m_data.szCourse<<endl;
-    cout<<"Date of Join\t:"<<m_data.szDateOfJoin<<endl;
+    cout<<"Name\t\t: "<<m_data.szName<<endl;
+    cout<<"Admission Number: "<<m_data.nAdmNo<<endl;
+    cout<<"Gender\t\t: "<<m_data.cGender<<endl;
+    cout<<"Course\t\t: "<<m_data.szCourse<<endl;
+    cout<<"Date of Join\t: "<<m_data.szDateOfJoin<<endl;
 }
 
 void CStudent::ViewTab( void )
 {
-    cout<<setw( 10 )<<m_data.szName;
-    cout<<setw( 10 )<<m_data.nAdmNo;
-    cout<<setw( 10 )<<m_data.cGender;
-    cout<<setw( 10 )<<m_data.szCourse;
-    cout<<setw( 10 )<<m_data.szDateOfJoin;
+    cout<<setw( 15 )<<setiosflags(ios::left)<<m_data.nAdmNo;
+    cout<<setw( 20 )<<setiosflags(ios::left)<<m_data.szName;
+    cout<<setw( 10 )<<setiosflags(ios::left)<<m_data.cGender;
+    cout<<setw( 18 )<<setiosflags(ios::left)<<m_data.szCourse;
+    cout<<setw( 20 )<<setiosflags(ios::left)<<m_data.szDateOfJoin;
 }

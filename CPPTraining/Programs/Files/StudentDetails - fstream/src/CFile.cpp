@@ -10,34 +10,34 @@ CFile::CFile( void )
     }
     else
     {
-        //unimplemented
+
     }
 }
+
+int CFile::ReturnAdmnNo()
+{
+    CStudent data;
+
+    storage.seekg( 0, ios::end );
+    storage.read( ( char* )( &data ), -sizeof( data ) );
+    return data.GetAdmNo();
+}
+
 void CFile::Write( CStudent data )
 {
     storage.seekp( 0L, ios::end );
-    storage.write( ( char* )( &data ),sizeof( data ) );
+    storage.write( ( char* )( &data ), sizeof( data ) );
     storage.flush();
 }
 
 CStudent CFile::GetData( int nAdmNo )
 {
-  CStudent temp;
-/*
-    istorage.open( "STUDENT.dat", ios::in | ios::binary );
-    if( !istorage )
+    CStudent temp;
+
+    storage.seekg( 0, ios::beg );
+    while( storage.read( ( char* )&temp,sizeof( temp ) )
+           )
     {
-        cout<<"File access failed or file does not exist."<<endl;
-        exit( 0 );
-    }
-    else
-    {
-        //unimplemented
-    }
-    istorage.seekg( 0, ios::beg );
-    while( !istorage.eof() )
-    {
-        istorage.read( ( char* )&temp,sizeof( temp ) );
         if( nAdmNo == temp.GetAdmNo() )
         {
             return temp;
@@ -47,33 +47,38 @@ CStudent CFile::GetData( int nAdmNo )
             //unimplemented
         }
     }
-    istorage.close();
-    */
     return temp;
 }
 
 void CFile::ViewAll( void )
 {
     CStudent temp;
+    int nFlag = 0;
 
-    cout<<storage.tellp()<<"\t"<<storage.tellg()<<"\n";
     storage.seekp( 0L, ios::beg );
     storage.seekg( 0L, ios::beg );
-    cout<<storage.tellp()<<"\t"<<storage.tellg()<<"\n";
     while( storage.read( ( char* )&temp, sizeof( CStudent ) ) )
     {
         temp.ViewTab();
         cout<<endl;
-
+        nFlag = 1;
     }
-    cout<<storage.tellg();
+    if( nFlag == 0 )
+    {
+        system( "cls" );
+        cout<<"\n\n\t\tFile Empty\n\n"<<endl;
+    }
+    else
+    {
+        //unimplemented
+    }
 }
 
 void CFile::ClearSpec( int nAdmNo )
-{/*
+{
     CStudent temp;
-    ofstream fout("temp.dat", ios::out | ios::binary | ios::trunc );
-    while( istorage.read( ( char* )&temp, sizeof( temp ) ) )
+    fstream fout("temp.dat", ios::out | ios::binary | ios::trunc );
+    while( storage.read( ( char* )&temp, sizeof( temp ) ) )
     {
         if( temp.GetAdmNo() != nAdmNo )
         {
@@ -83,16 +88,15 @@ void CFile::ClearSpec( int nAdmNo )
         {
             //else unimplemented
         }
-    }*/
+    }
 }
 
 void CFile::ClearFile( void )
 {
-  /*  istorage.close();
-    ostorage.close();
+    storage.close();
     remove( "STUDENT.dat" );
-    ostorage.open("STUDENT.dat", ios::out | ios::binary );
-    if( !ostorage )
+    storage.open("STUDENT.dat", ios::out | ios::binary );
+    if( !storage )
     {
         cout<<"File access failed or file does not exist."<<endl;
         exit( 0 );
@@ -101,8 +105,7 @@ void CFile::ClearFile( void )
     {
         //unimplemented
     }
-    ostorage.close();
-    */
+    storage.close();
 }
 
 CFile::~CFile( void )

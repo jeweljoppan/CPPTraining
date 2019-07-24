@@ -14,13 +14,13 @@
 
 #include "CStudent.h"
 #include "CFile.h"
+#include "CInputValidate.h"
 
 class CAdmin
 {
     private:
         CStudent m_student;
-        CFile m_file;
-
+        CInputValidate m_check;
         static int m_nAdmCount;
         void Menu( void );
         void HandleChoice( void );
@@ -31,6 +31,7 @@ class CAdmin
         void DeleteAll( void );
         void Hold( void );
     public:
+        CAdmin();
         void Manage( void );
 };
 

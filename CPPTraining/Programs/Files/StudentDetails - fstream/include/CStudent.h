@@ -19,10 +19,9 @@
 #include <conio.h>
 #include <iomanip>
 #include <stdio.h>
-#include <sstream>
 
-#define MAX_LENGTH 30
-#define DATE_LENGTH 10
+#define MAX_LENGTH 20
+#define DATE_LENGTH 11
 
 using namespace std;
 

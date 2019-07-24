@@ -12,7 +12,7 @@
 
 #include "CAdmin.h"
 
-int CAdmin::m_nAdmCount = 1;
+int CAdmin::m_nAdmCount = 0;
 
 void Intro( void )
 {
@@ -28,6 +28,7 @@ void CAdmin::Menu( void )
     cout<<"4. Delete specific"<<endl;
     cout<<"5. Delete all"<<endl;
     cout<<"9. Exit"<<endl;
+    HandleChoice();
 }
 
 void CAdmin::HandleChoice( void )
@@ -36,8 +37,8 @@ void CAdmin::HandleChoice( void )
 
     re:
     cout<<"\nEnter your choice (1-5 or 9): ";
-    cin>>cChoice;
-    getchar();
+    cChoice = getche();
+    cout<<endl;
     switch( cChoice )
     {
     case '1':
@@ -75,19 +76,21 @@ void CAdmin::HandleChoice( void )
 
 void CAdmin::AddNew( void )
 {
+    CFile file;
     char szName[MAX_LENGTH];
     char cGender;
-    int cCourse;
+    char cCourse;
     char szDateOfJoin[DATE_LENGTH];
 
     Intro();
     cout<<"Registration"<<endl;
     cout<<string( 12,'_' );
     cout<<"\nName\t\t: ";
-    cin.getline( szName, 29 );
+    m_check.CharArray( szName, MAX_LENGTH, MAX_LENGTH - 1 );
     Gre:
     cout<<"Gender( M/F/O )\t\t: ";
-    cin>>cGender;
+    cGender = getche();
+    cout<<endl;
     cGender = toupper( cGender );
     if( cGender == 'M' || cGender == 'F' || cGender == 'O' )
     {
@@ -95,13 +98,14 @@ void CAdmin::AddNew( void )
         cout<<"\t1. Computer Science"<<endl;
         cout<<"\t2. Biology"<<endl;
         cout<<"\t3. Commerce"<<endl;
-DOJre:
+        DOJre:
         cout<<"\nEnter your course: ";
-        cin>>cCourse;
+        cCourse=getche();
+        cout<<endl;
         if( cCourse == '1' || cCourse == '2' || cCourse == '3' )
         {
             cout<<"Date of Join ( DD/MM/YYYY )\t\t: ";
-            cin>>szDateOfJoin;
+            m_check.Date( szDateOfJoin );
         }
         else
         {
@@ -114,19 +118,23 @@ DOJre:
         cout<<"Invalid input. Try again.\n";
         goto Gre;
     }
-    m_student.AddData( m_nAdmCount++, szName, cGender, cCourse, szDateOfJoin);
-    m_file.Write( m_student );
+    m_student.AddData( ++m_nAdmCount, szName, cGender, cCourse, szDateOfJoin);
+    file.Write( m_student );
+    file.~CFile();
 }
 
 void CAdmin::ViewSpec( void )
 {
+    CFile file;
     int nAdmNo = 0;
 
     Intro();
     cout<<"Admno: ";
     cin>>nAdmNo;
-    m_student = m_file.GetData( nAdmNo );
-    cout<<" Student Details: "<<endl;
+    system( "cls" );
+    Intro();
+    m_student = file.GetData( nAdmNo );
+    cout<<" Student Details "<<endl<<endl;
     if( m_student.GetAdmNo() == 0 )
     {
         cout<<"No Record found.";
@@ -137,6 +145,7 @@ void CAdmin::ViewSpec( void )
     }
     cout<<endl;
     Hold();
+    file.~CFile();
 }
 void CAdmin::DeleteSpec( void )
 {
@@ -145,7 +154,13 @@ void CAdmin::DeleteSpec( void )
 
 void CAdmin::DeleteAll( void )
 {
-    m_file.ClearFile();
+    CFile file;
+    file.ClearFile();
+    Intro();
+    cout<<"File Cleared."<<endl<<endl;
+    m_nAdmCount = 1;
+    Hold();
+    file.~CFile();
 }
 
 void CAdmin::Hold( void )
@@ -156,14 +171,25 @@ void CAdmin::Hold( void )
 
 void CAdmin::ViewAll( void )
 {
+    CFile file;
+
     Intro();
-    cout<<setw( 10 )<<setiosflags(ios::left)<<"Name";
-    cout<<setw( 10 )<<"Admission";
-    cout<<setw( 10 )<<"Gender";
-    cout<<setw( 10 )<<"Course";
-    cout<<setw( 10 )<<"Date of Join"<<endl;
-    m_file.ViewAll();
-    getch();
+    cout<<setw( 15 )<<setiosflags(ios::left)<<"Admission";
+    cout<<setw( 20 )<<setiosflags(ios::left)<<"Name";
+    cout<<setw( 10 )<<setiosflags(ios::left)<<"Gender";
+    cout<<setw( 18 )<<setiosflags(ios::left)<<"Course";
+    cout<<setw( 20 )<<setiosflags(ios::left)<<"Date of Join"<<endl;
+    file.ViewAll();
+    Hold();
+    file.~CFile();
+}
+
+CAdmin::CAdmin()
+{
+    CFile file;
+
+    m_nAdmCount = file.ReturnAdmnNo();
+    file.~CFile();
 }
 
 void CAdmin::Manage( void )
@@ -172,7 +198,5 @@ void CAdmin::Manage( void )
     {
         Intro();
         Menu();
-        HandleChoice();
-        m_file.~CFile();
     }
 }
