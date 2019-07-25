@@ -150,11 +150,9 @@ void CInputValidate::CharArray( /*IN*/  char *szData,
                                 /*IN*/ const int nPermittedLength )
 {
     int nIndex;
-    int nFlag;
 
     again:
     nIndex = 0;
-    nFlag = 0;
     strcpy( szData,"\0" );
     cin.clear();
     cin.getline( szData,nLength );

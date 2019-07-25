@@ -1,5 +1,11 @@
 #include "CFile.h"
 
+// ------------------------------------------------------------------
+// Method      : Constructor
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Opens the file to storage.
+// ------------------------------------------------------------------
 CFile::CFile( void )
 {
     storage.open( "STUDENT.dat", ios::in | ios::out| ios::binary );
@@ -14,23 +20,48 @@ CFile::CFile( void )
     }
 }
 
+// ------------------------------------------------------------------
+// Method      : ReturnAdmnNo
+// Parameters  : Nil
+// Returns     : int
+// Description : Method that returns the admission number of recently
+//               added student.
+// ------------------------------------------------------------------
 int CFile::ReturnAdmnNo()
 {
     CStudent data;
+    int temp = sizeof( data ) * -1;
 
-    storage.seekg( 0, ios::end );
-    storage.read( ( char* )( &data ), -sizeof( data ) );
+    storage.seekg( temp, ios::end );
+    storage.read( ( char* )( &data ), sizeof( data ) );
     return data.GetAdmNo();
 }
 
-void CFile::Write( CStudent data )
+// ------------------------------------------------------------------
+// Method      : Write
+// Parameters  :
+//  <param 1>  - <CStudent data> - Student object that has
+//                                 to be written to file.
+// Returns     : Nil
+// Description : The method to write object to file.
+// ------------------------------------------------------------------
+void CFile::Write( /*IN*/ CStudent data )
 {
     storage.seekp( 0L, ios::end );
     storage.write( ( char* )( &data ), sizeof( data ) );
     storage.flush();
 }
 
-CStudent CFile::GetData( int nAdmNo )
+// ------------------------------------------------------------------
+// Method      : GetData
+// Parameters  :
+// <param 1>   - <int nAdmNo> - Admission number of the student that
+//                              has to be searched
+// Returns     : CStudent
+// Description : Searches the file to find the object matching to the
+//               admission number.
+// ------------------------------------------------------------------
+CStudent CFile::GetData( /*IN*/ int nAdmNo )
 {
     CStudent temp;
 
@@ -44,12 +75,18 @@ CStudent CFile::GetData( int nAdmNo )
         }
         else
         {
-            //unimplemented
+            temp.AddData( 0, " ", ' ', ' ', " " );
         }
     }
     return temp;
 }
 
+// ------------------------------------------------------------------
+// Method      : ViewAll
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Methods to print all records in the file.
+// ------------------------------------------------------------------
 void CFile::ViewAll( void )
 {
     CStudent temp;
@@ -74,10 +111,18 @@ void CFile::ViewAll( void )
     }
 }
 
-void CFile::ClearSpec( int nAdmNo )
+// ------------------------------------------------------------------
+// Method      : ClearSpec
+// Parameters  :
+//  <param 1>  - <int nAdmNo> - Admission number of student record that has
+//                              to be deleted.
+// Returns     : Nil
+// Description : Function to clear a specific student record.
+// ------------------------------------------------------------------
+void CFile::ClearSpec( /*IN*/ int nAdmNo )
 {
     CStudent temp;
-    fstream fout("temp.dat", ios::out | ios::binary | ios::trunc );
+    ofstream fout("temp.dat", ios::out | ios::binary | ios::trunc );
     while( storage.read( ( char* )&temp, sizeof( temp ) ) )
     {
         if( temp.GetAdmNo() != nAdmNo )
@@ -89,8 +134,18 @@ void CFile::ClearSpec( int nAdmNo )
             //else unimplemented
         }
     }
+    fout.close();
+    storage.close();
+    remove( "STUDENT.dat" );
+    rename( "temp.dat", "STUDENT.dat" );
 }
 
+// ------------------------------------------------------------------
+// Method      : ClearFile
+// Parameters  : Nil
+// Returns     : Nil
+// Description : Method to clear the file.
+// ------------------------------------------------------------------
 void CFile::ClearFile( void )
 {
     storage.close();
@@ -105,9 +160,39 @@ void CFile::ClearFile( void )
     {
         //unimplemented
     }
-    storage.close();
 }
 
+// ------------------------------------------------------------------
+// Method      : ModifyFile
+// Parameters  :
+//  <param 1>  - <CStudent data> - The modified record.
+// Returns     : Nil
+// Description : The function to modify the details of a particular student.
+// ------------------------------------------------------------------
+void CFile::ModifyFile( /*IN*/ CStudent data )
+{
+    CStudent temp;
+    int nSize = sizeof( temp ) * -1;
+    temp = GetData( data.GetAdmNo() );
+    if( temp.GetAdmNo() == 0)
+    {
+        cout<<"No data found."<<endl;
+    }
+    else
+    {
+        cout<<storage.tellg();
+        storage.seekg( nSize, ios::cur );
+        storage.write( ( char* )( &data ), sizeof( data ) );
+        storage.flush();
+    }
+}
+
+// ------------------------------------------------------------------
+// Method      : Destructor
+// Parameters  : Nil
+// Returns     : Nil
+// Description : TO clear the class object from memory
+// ------------------------------------------------------------------
 CFile::~CFile( void )
 {
     storage.close();

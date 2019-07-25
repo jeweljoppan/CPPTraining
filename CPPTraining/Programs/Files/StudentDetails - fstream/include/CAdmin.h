@@ -16,6 +16,15 @@
 #include "CFile.h"
 #include "CInputValidate.h"
 
+/*
+ * Class <CAdmin>
+ * <A class which manages the control flow of program.>
+ * Author : Jewel Jo Prince
+ * Version : 1.0.0
+ * Date : 18-07-2019
+ *
+ */
+
 class CAdmin
 {
     private:
@@ -25,8 +34,10 @@ class CAdmin
         void Menu( void );
         void HandleChoice( void );
         void AddNew( void );
+        void UserData( int nAdmNo = 0 );
         void ViewSpec( void );
         void ViewAll( void );
+        void Modify( void );
         void DeleteSpec( void );
         void DeleteAll( void );
         void Hold( void );

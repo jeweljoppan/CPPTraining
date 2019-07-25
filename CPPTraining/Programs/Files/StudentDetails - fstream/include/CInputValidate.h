@@ -23,8 +23,8 @@
 using namespace std;
 
 /*
- * Class <CInpuValidation>
- * <A class that holds methods to validate user inputs.>
+ * Class <CInputValidate>
+ * <A class which has methods to validate user input as per need.>
  * Author : Jewel Jo Prince
  * Version : 1.0.0
  * Date : 23-07-2019

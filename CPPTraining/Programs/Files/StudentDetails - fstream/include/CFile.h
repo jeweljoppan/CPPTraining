@@ -15,6 +15,14 @@
 #include <fstream>
 #include <CStudent.h>
 
+/*
+ * Class <CFile>
+ * <A class which handles all the file operations. >
+ * Author : Jewel Jo Prince
+ * Version : 1.0.0
+ * Date : 18-07-2019
+ *
+ */
 class CFile
 {
     private:
@@ -27,6 +35,7 @@ class CFile
         void ViewAll( void );
         void ClearSpec( int nAdmNo );
         void ClearFile( void );
+        void ModifyFile( CStudent );
         ~CFile( void );
 };
 

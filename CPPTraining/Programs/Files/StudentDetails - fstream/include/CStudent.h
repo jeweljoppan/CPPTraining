@@ -25,14 +25,7 @@
 
 using namespace std;
 
-/*
- * Class <CStudent>
- * <A class which stores details of students.>
- * Author : Jewel Jo Prince
- * Version : 2.0.0
- * Date : 12-07-2019
- *
- */
+// Structure that holds the details of student.
 
 struct stStudent
 {
@@ -42,6 +35,15 @@ struct stStudent
     char szCourse[MAX_LENGTH];
     char szDateOfJoin[DATE_LENGTH];
 };
+
+/*
+ * Class <CStudent>
+ * <A class which stores details of students.>
+ * Author : Jewel Jo Prince
+ * Version : 2.0.0
+ * Date : 12-07-2019
+ *
+ */
 
 class CStudent
 {

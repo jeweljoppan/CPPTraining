@@ -56,24 +56,27 @@
 	"CEmpDetails.h"
 	"CInputValidate.h"
 
-1563385011 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cempdetails.h
+1563986523 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cempdetails.h
 	<iostream>
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	<conio.h>
+	<iomanip>
 
-1563911041 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cinputvalidate.h
+1564080808 d:\ed\cpptraining\cpptraining\programs\class\array of objects\include\cinputvalidate.h
 	<iostream>
 	<string>
 	<limits>
 	<float.h>
 	<stdlib.h>
+	<conio.h>
+	<cstring>
 
-1563385011 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cempdetails.cpp
+1563986523 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cempdetails.cpp
 	"CEmpDetails.h"
 
-1563911326 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cmanager.cpp
+1563986523 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cmanager.cpp
 	"CManager.h"
 
 1563912051 source:d:\ed\cpptraining\cpptraining\programs\class\array of objects\src\cinputvalidate.cpp

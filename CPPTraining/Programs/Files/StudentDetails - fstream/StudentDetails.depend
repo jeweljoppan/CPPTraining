@@ -69,3 +69,44 @@
 	<conio.h>
 	<cstring>
 
+1564076199 source:d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\main.cpp
+	"CAdmin.h"
+
+1564075990 d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\include\cadmin.h
+	"CStudent.h"
+	"CFile.h"
+	"CInputValidate.h"
+
+1563986523 d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\include\cstudent.h
+	<iostream>
+	<ctime>
+	<string.h>
+	<conio.h>
+	<iomanip>
+	<stdio.h>
+
+1564075060 d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\include\cfile.h
+	<fstream>
+	<CStudent.h>
+
+1564077509 d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\include\cinputvalidate.h
+	<iostream>
+	<string>
+	<limits>
+	<float.h>
+	<stdlib.h>
+	<conio.h>
+	<cstring>
+
+1564077506 source:d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\src\cadmin.cpp
+	"CAdmin.h"
+
+1564077509 source:d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\src\cfile.cpp
+	"CFile.h"
+
+1564026115 source:d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\src\cstudent.cpp
+	"CStudent.h"
+
+1564024900 source:d:\ed\cpptraining\cpptraining\programs\files\studentdetails - fstream\src\cinputvalidate.cpp
+	"CInputValidate.h"
+
