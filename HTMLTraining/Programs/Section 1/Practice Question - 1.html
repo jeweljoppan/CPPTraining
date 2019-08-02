@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        h1 {
+            text-align: "center";
+            font-family: Arial;
+            font-size: 30px;
+        }
+
+        ::-webkit-input-placeholder {
+            /* Edge */
+            color: rgb(122, 121, 121);
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: rgb(122, 121, 121);
+        }
+
+        ::placeholder {
+            color: rgb(122, 121, 121);
+        }
+
+        label {
+            font-family: Arial;
+            font-size: 12px;
+        }
+
+        button {
+            border-radius: 10px;
+            color: #ffffff;
+            background: #25274d;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            height: 30px;
+            width: 100px
+        }
+
+        input[type=text],
+        input[type=email] {
+            border-radius: 5px;
+            border: 1px dotted #d5d5d5;
+            margin-bottom: 10px;
+            width: 500px;
+            margin-top: 10px;
+            padding: 15px
+        }
+
+        input[type=radio] {
+            margin-top: 10px;
+            margin-bottom: 10px
+        }
+
+        textarea {
+            border-radius: 5px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            width: 525px;
+            height: 100px;
+            border: 1px dotted #d5d5d5;
+        }
+
+        div {
+            max-width: 500px;
+            margin: auto
+        }
+    </style>
+    <title>Practice Question 1</title>
+</head>
+
+<body>
+    <div>
+        <form>
+            <h1>Send a message</h1>
+            <label for="first-name">First Name:</label><br />
+            <input type="text" id="first-name" name="first name" placeholder="Enter First Name" value="" /><br />
+            <label for="last-name">Last Name:</label><br />
+            <input type="text" id="last-name" name="last name" placeholder="Enter Last Name" value="" /><br />
+            <label for="email">Email:</label><br />
+            <input type="email" id="email" name="email" placeholder="Email" value="" /><br />
+            <input type="radio" id="status-professional" name="status"
+                value="professional"><label><strong>Professional</strong></label>
+            <input type="radio" id="status-entrepreneur" name="status"
+                value="entrepreneur"><label><strong>Entrepreneur</strong></label><br />
+            <label for="comment">Comment:</label><br />
+            <textarea id="comment" name="comment"></textarea><br />
+            <input type="checkbox" id="checkbox" name="accept condition" value="accept"><label><strong>I accept the
+                    Terms and
+                    Conditions.</strong></label><br />
+            <button id="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

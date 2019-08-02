@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 360px;
+            grid-template-areas:
+                "content";
+            padding: 30px 30px;
+            justify-content: center;
+        }
+
+        .content {
+            grid-area: content;
+        }
+
+        h1 {
+            font-size: 20px;
+            font: Arial;
+        }
+
+        h3 {
+            font-size: 10px;
+            font: Arial;
+        }
+
+        p {
+            font-size: 12px;
+            font: Arial;
+            color: #7c7c7c;
+        }
+
+        a {
+            font-size: 14px;
+            font: Arial;
+            color: #ff4e00;
+            float: right;
+
+        }
+    </style>
+    <title>Practice Question 2</title>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="content">
+            <figure>
+                <img src="img/2019-triumph-street-twin-10.jpg" alt="Triumph" style="width:360px;height:271px;">
+            </figure>
+            <br />
+            <h3>L I F E S T Y L E</h3>
+            <br />
+            <h1>When Two Wheels Are Better Than Four</h1><br />
+            <p>The new Street Twin motorcycle is built to ride, with everything designed for all-round performance,
+                usability and timeless iconic style.</p>
+            <br />
+            <a href="https://www.triumphmotorcycles.in/motorcycles/classic/bonneville-street-twin"><strong>read
+                    more</strong></a>
+            <a name="read more"></a>
+        </div>
+    </div>
+</body>
+
+</html>

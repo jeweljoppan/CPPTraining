@@ -1,3 +1,14 @@
+/**
+ * File CFile.h - Copyright (C) <2019>
+ * <Triassic Solutions Private Limited>. All rights reserved.
+ * This file contains the definitions of a Class "CFile" to handle files.
+ *
+ * Author   : Jewel Jo Prince
+ * Version  : 1.0.0
+ * Date     : 18-07-2019
+ *
+ */
+
 #include "CFile.h"
 
 // ------------------------------------------------------------------
@@ -30,9 +41,9 @@ CFile::CFile( void )
 int CFile::ReturnAdmnNo()
 {
     CStudent data;
-    int temp = sizeof( data ) * -1;
+    int nTemp = sizeof( data ) * -1;
 
-    storage.seekg( temp, ios::end );
+    storage.seekg( nTemp, ios::end );
     storage.read( ( char* )( &data ), sizeof( data ) );
     return data.GetAdmNo();
 }
@@ -149,11 +160,11 @@ void CFile::ClearSpec( /*IN*/ int nAdmNo )
 void CFile::ClearFile( void )
 {
     storage.close();
-    remove( "STUDENT.dat" );
-    storage.open("STUDENT.dat", ios::out | ios::binary );
+    remove( "Employee.dat" );
+    storage.open("Employee.dat", ios::out | ios::binary );
     if( !storage )
     {
-        cout<<"File access failed or file does not exist."<<endl;
+        cout<<"Operation failed."<<endl;
         exit( 0 );
     }
     else

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .navbar {
+            text-align: center;
+            line-height: 40px;
+            list-style-type: none;
+            padding: 30px;
+        }
+
+        .navbar a {
+            font-family: Arial;
+            font-size: 12px;
+            width: 20%;
+            padding: 20px;
+            text-align: left;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .navbar>ul {
+            margin: auto;
+            padding: 0px 0px 0px 0px;
+            max-width: 980px;
+            background: #003470;
+        }
+
+        .navbar>ul>li {
+            display: inline-block;
+            list-style-type: none;
+            height: 10%;
+            width: 16%;
+            position: relative;
+            text-align: center;
+        }
+
+        .subnav-1>li {
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .navbar>ul>li:hover {
+            background-color: #0060ff;
+        }
+
+        .navbar li:hover .subnav-1,
+        .subnav-1 li:hover .subnav-2 {
+
+            display: block;
+        }
+
+        .subnav-1 li:hover .subnav-2 {
+            left: 100%;
+            top: 32%;
+            text-align: center
+        }
+
+        ul.subnav-1,
+        ul.subnav-2 {
+            position: absolute;
+            width: 180px;
+            padding-left: 0px;
+            margin-left: auto;
+            background-color: #0060ff;
+            list-style-type: none;
+            padding-top: 5px;
+            display: none;
+
+        }
+
+
+        ul.subnav-1 li:hover,
+        ul.subnav-2 li:hover {
+            background-color: #003470;
+
+        }
+
+        span.arrow-left,
+        span.arrow-down {
+            color: #ffffff;
+            margin-left: 0;
+        }
+    </style>
+    <title>Practice Question 4</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a>
+                <ul class="subnav-1">
+                    <li><a href="#">Submenu level 1 </a></li>
+                    <li><a href="#">Submenu level 1 </a>
+                        <ul class="subnav-2">
+                            <li><a href="#">Submenu level 2</a></li>
+                            <li><a href="#">Submenu level 2</a></li>
+                            <li><a href="#">Submenu level 2</a></li>
+                        </ul>
+                        <span class="arrow-left">&#9656</span>
+                    </li>
+                    <li><a href="#">Submenu level 1</a></li>
+                </ul>
+                <span class="arrow-down">&#9662</span>
+            </li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
